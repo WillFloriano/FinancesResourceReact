@@ -1,132 +1,149 @@
-#root{
+#root {
   background-color: lightgrey;
   height: 800px;
 }
 
-.topo{
+.topo {
   background-color: darkgray;
 }
 
-.topo img{
+.topo img {
   max-width: 10%;
 }
 
-.finances{
+.finances {
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
   margin-bottom: 5px;
   display: block;
   justify-content: center;
-  margin-right: 20px;
 }
 
-.form{
+.form {
   justify-content: center;
   display: grid;
   align-items: center;
   padding: 100px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.486);   
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.486);
   border-radius: 20px;
-  background-color:lightslategrey ;
+  background-color: lightslategrey;
   width: 500px;
   margin-left: 430px;
-  margin-top: 150px;
+  margin-top: 80px;
+  height: 300px;
 }
 
-.inEmail{
+.form label {
+  display: grid;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.inEmail {
   border-radius: 10px;
   width: 250px;
   margin-bottom: 15px;
   height: 25px;
+  text-align: center;
+  margin-left: 6px;
+  margin-top: 12px;
 }
 
-.inPass{
+.imgEmail {
+  max-width: 8%;
+}
+
+.inPass {
   border-radius: 10px;
   width: 250px;
   margin-bottom: 15px;
   height: 25px;
+  text-align: center;
+  margin-left: 6px;
+  margin-top: 12px;
 }
 
-.btnEntrar{
+.btnEntrar {
   border-radius: 10px;
   border: none;
   height: 25px;
   width: 60px;
   justify-content: center;
   align-items: center;
-  margin-left: 90px;
+  margin-left: 100px;
+  margin-top: 38px;
 }
 
-.lblEntrar{
-  margin-top: 8px;
+.lblEntrar {
+  margin-top: 90px;
   display: block;
 }
 
-.lblRegistro{
-  margin-top: 8px;
+.lblRegistro {
+  margin-top: 90px;
   display: block;
-  margin-left: 35px;
+  text-align: center;
 }
 
-.btnRegistrar{
+.btnRegistrar {
   border-radius: 10px;
   border: none;
   height: 25px;
   width: 70px;
   justify-content: center;
   align-items: center;
-  margin-left: 90px;
+  margin-left: 20px;
 }
 
-.ul{
+.ul {
   list-style: none;
   padding: 0;
   left: 0;
-  top:0;
+  top: 0;
 }
 
-li{
-padding: 10px;
+li {
+  padding: 10px;
 }
 
-.liHome img{
-  max-width: 20px;  
-}
-
-.liLancados img{
+.liHome img {
   max-width: 20px;
 }
 
-.liLancamentos img{
+.liLancados img {
   max-width: 20px;
 }
 
-.liPerfil img{
+.liLancamentos img {
   max-width: 20px;
 }
 
-.liLogout img{
+.liPerfil img {
   max-width: 20px;
 }
 
-.horizontal{
+.liLogout img {
+  max-width: 20px;
+}
+
+.horizontal {
   width: 180px;
   border-color: black;
 }
 
 .apresentacao {
-justify-content: center;
-align-items: center;
-display: flex;
-background-color: lightslategrey;
-max-width: 500px;
-height: 500px;
-margin-left: 500px;
-margin-top: -240px;
-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.486);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: lightslategrey;
+  max-width: 500px;
+  height: 500px;
+  margin-left: 500px;
+  margin-top: -240px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.486);
 }
 
-.containerlanc{
+.containerlanc {
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -134,60 +151,77 @@ box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.486);
   padding: 10px;
 }
 
-.txtDescricao{
-  padding: 10px;
-  width: 150px;
-  border-radius: 5px;
-} 
-
-.txtValor{
-  padding: 10px;
-  width: 150px;
-  border-radius: 5px;
-} 
-
-.txtVencimento{
+.txtDescricao {
   padding: 10px;
   width: 150px;
   border-radius: 5px;
 }
 
-.txtmeses{
+.txtValor {
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+}
+
+.txtVencimento {
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+}
+
+.txtmeses {
   padding: 10px;
   width: 160px;
   border-radius: 5px;
 }
 
-.btnInsert{
+.btnInsert {
   width: 184px;
   border-radius: 5px;
 }
 
-.trTopo{
+.trTopo {
 
   text-align: center;
 }
 
-.btnVoltar{
+.btnVoltar {
   margin-top: -50px;
   display: flex;
   justify-content: center;
   align-items: center;
- 
+  margin-left: 130px;
+
 }
 
-.imgProfile{
+.imgProfile {
   max-width: 30%;
   padding-left: 150px;
 }
 
-.divEmailUser{
+.divEmailUser {
   padding-bottom: 150px;
   z-index: 2;
   display: contents;
 }
 
-.divNewSenha{
+.divNewSenha {
   display: grid;
   padding: 10px;
+}
+
+.trContainer li {
+  list-style: none;
+}
+
+.trContainer li img {
+  width: 25%;
+}
+
+.divContainer td {
+  width: 140px;
+}
+
+.imgExclui{
+  cursor: pointer;
 }

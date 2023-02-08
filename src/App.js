@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile'
 
 function App() {
+  
   return (
     <Router>
       <div className="App">
@@ -19,7 +20,7 @@ function App() {
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/lancamentos" element={<Lancamentos />} />
           <Route exact path="/lancados" element={<Lancados />} />
-          <Route exact path="/profile" element={<Profile/>} />
+          <Route exact path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </Router>

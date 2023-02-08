@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Register(){
+export default function Register() {
 
-    
-    return(
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+
+    return (
         <div>
-            <form className="form">
-                <label className="finances">Finances Resource</label>
-                <input type="email" className="inEmail" placeholder="Type your e-mail here"></input>
-                <input type="password" className="inPass" placeholder="Type your p@$$w0rd"></input>
-                <button className="btnRegistrar">Registrar</button>
-                <label className="lblRegistro">Já tem uma conta ? <Link to="/" style={{ textDecoration:'none' }}>Entre</Link></label>
-            </form>            
+            <form className="form" onSubmit="">
+                <span className="finances">Finances Resource</span>
+                <label className="inEmail">
+                    <input type="email" name="rEmail" className="inEmail" placeholder="Type your e-mail here" onChange={(e)=> setEmail(e.target.value)}></input>
+                    <input type="password" name="rPassword" className="inPass" placeholder="Type your P@s$w0rd" onChange={(e)=> setPassword(e.target.value)}></input> 
+                    <input type="submit" className="btnRegistrar" value="Registrar"></input>                   
+                </label>                
+                <span className="lblRegistro">Já tem uma conta ? <Link to="/" style={{ textDecoration: 'none' }}>Entre</Link></span>
+            </form>
         </div>
     )
 }
