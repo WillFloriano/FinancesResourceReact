@@ -57,7 +57,7 @@ export const useAuthentication = () => {
             }else if(error.message.includes("email-already")){
                 systemErrorMEssage = "E-mail já cadastrado!";
             }else{
-                systemErrorMEssage = "Ocorreu um erro, por favor tebte mais tarde.";
+                systemErrorMEssage = "Ocorreu um erro, por favor tente mais tarde.";
             }
 
             setLoading(false);

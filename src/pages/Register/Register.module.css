@@ -3,5 +3,9 @@
 }
 
 .register p {
-    color: #aaa;
+    color: black;
+}
+
+.register ::placeholder {
+    color: black;
 }
