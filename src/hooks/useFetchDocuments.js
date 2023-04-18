@@ -14,7 +14,7 @@ export const useFetchDocuments = (docCollection, mesLancamento) => {
     useEffect(() => {
 
         async function loadData() {
-            if (cancelled) return
+          
 
             setLoading(true)
 
@@ -26,10 +26,11 @@ export const useFetchDocuments = (docCollection, mesLancamento) => {
 
                 //busca
                 //dashboard
-
-                console.log(mesLancamento)
-
-                q = await query(collectionRef, where("mesLancamento", "==", "Abril"), orderBy('vencimento', "desc"))
+                if(mesLancamento)
+                {
+                    q = await query(collectionRef, where("mesLancamento", "==", mesLancamento), orderBy('vencimento', "desc"))
+                }
+                              
 
                 await onSnapshot(q, (querySnapshot) => {
                     setDocuments(

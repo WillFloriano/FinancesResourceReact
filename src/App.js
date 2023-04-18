@@ -1,6 +1,6 @@
 import './App.css';
 
-import { BrowserRouter as Router, Routes, Route, Navigate, useFetcher } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { onAuthStateChanged } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 
@@ -15,6 +15,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Lancados from './pages/Lancados/Lancados';
 import Lancamentos from './pages/Lancamentos/Lancamentos';
+import EditLancamentos from './pages/EditLancados/EditLancamentos';
 
 function App() {
 
@@ -45,7 +46,8 @@ if(loadingUSer) {
             <Route path="/" element={<Home/>}/>
             <Route path="/login" element={!user ? <Login/> : <Navigate to="/" />} />
             <Route path="/register" element={!user ? <Register /> : <Navigate to="/register" />}/>
-            <Route path="/Lancados" element={user ? <Lancados/> : <Navigate to="/login" />} />
+            <Route path="/lancados" element={user ? <Lancados/> : <Navigate to="/login" />} />
+            <Route path="/lancados/edit/:id" element={user ? <EditLancamentos/> : <Navigate to="/login" />} />
             <Route path="/lancamentos" element={<Lancamentos/>} />
         </Routes>
       </div>

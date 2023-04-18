@@ -3,18 +3,16 @@ import styles from './Lancados.module.css'
 //hooks
 //import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 import PostDetail from '../../components/PostDetails';
 
 
 const Lancados = () => {
 
   const [mesLancamento, setMesLancamento] = useState(null)
-  const { documents: posts, loading } = useFetchDocuments("lancamentos", mesLancamento)
-
 
   const handleSubmit = (e) => {
-    e.preventDefault()    
+    e.preventDefault()
+
 
   }
 
@@ -23,7 +21,7 @@ const Lancados = () => {
       <h2>Eventos Lançados</h2>
       <p>Selecione o mes para visualizar seus lançamentos!</p>
       <form onSubmit={handleSubmit} className={styles.search_form}>
-        <select className={styles.select} onChange={setMesLancamento}>
+        <select className={styles.select} onLoad={e => setMesLancamento(e.target.value)} onChange={e => setMesLancamento(e.target.value)}>
           <option>Selecione</option>
           <option>Janeiro</option>
           <option>Fevereiro</option>
@@ -40,19 +38,16 @@ const Lancados = () => {
         </select>
       </form>
       <div>
-        {loading && <p>Carregando ...</p>}
-        {mesLancamento && (
-          <div>
-            {posts && posts.map((post) => (
-              <PostDetail key={post.id} post={post} />
-            ))}
-
-          </div>
-        )}
         {!mesLancamento && (
           <div className={styles.noposts}>
             <p>Não foram encontrados posts</p>
           </div>
+        )}
+        {mesLancamento && (
+          <div>
+            <PostDetail mesLancamento={mesLancamento} />
+          </div>
+
         )}
       </div>
     </div>
