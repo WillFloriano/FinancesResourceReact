@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom'
 import { useFetchDocuments } from '../hooks/useFetchDocuments';
-import { useDeleteDocument } from '../hooks/useDeleteDocuments'
+import { useDeleteDocument } from '../hooks/useDeleteDocuments';
+import { format, parseISO } from 'date-fns';
 
 import styles from './PostDetails.module.css'
+import { ptBR } from 'date-fns/locale';
+import { useState } from 'react';
 
 
-const PostDetail = ({ mesLancamento }) => {
+const PostDetail = ({ mes, uid}) => {
 
-  const { documents: posts, loading } = useFetchDocuments("lancamentos", mesLancamento)
+  const { documents: posts, loading } = useFetchDocuments("lancamentos", mes, uid)
 
   const { deleteDocument } = useDeleteDocument("lancamentos");
 
@@ -28,9 +31,9 @@ const PostDetail = ({ mesLancamento }) => {
         {posts && posts.map((post) => (
           <div className={styles.post_row} key={post.id}>
             <p >Descrição: {post.title}</p>
-            <p>Valor R$ {post.valor}</p>
-            <p>Vencimento: {post.vencimento.toString("DD/MM/YYYY")}</p>
-            <p>Mês Referencia: {post.mesLancamento}</p>
+            <p>Valor: R$ {post.valor}</p>
+            <p>Vencimento: {format(parseISO(post.vencimento), "dd/MM/yyyy", {locale: ptBR})}</p>
+            <p>Mês Referencia: {post.mesLancamento}</p>           
             <Link to={`/lancados/edit/${post.id}`} className="btn ">Editar</Link>
             <button onClick={() => deleteDocument(post.id)} className="btn btn-danger">Excluir</button>
           </div>

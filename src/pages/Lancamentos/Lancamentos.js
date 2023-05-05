@@ -41,6 +41,12 @@ const Lancamentos = () => {
       setVencimento("")
       setValor("")
       setAviso("Cadastrado com sucesso!")
+
+      const timer = setTimeout(() =>{
+        setAviso("");
+      }, 3000);
+
+      return () => clearTimeout(timer);
     }
 
   }
