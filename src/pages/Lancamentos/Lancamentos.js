@@ -44,6 +44,7 @@ const Lancamentos = () => {
 
       const timer = setTimeout(() =>{
         setAviso("");
+        
       }, 3000);
 
       return () => clearTimeout(timer);
