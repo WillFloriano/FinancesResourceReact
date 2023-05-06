@@ -48,7 +48,7 @@ if(loadingUSer) {
             <Route path="/register" element={!user ? <Register /> : <Navigate to="/register" />}/>
             <Route path="/lancados" element={user ? <Lancados/> : <Navigate to="/login" />} />
             <Route path="/lancados/edit/:id" element={user ? <EditLancamentos/> : <Navigate to="/login" />} />
-            <Route path="/lancamentos" element={<Lancamentos/>} />
+            <Route path="/lancamentos" element={user ? <Lancamentos/> : <Navigate to="/login" />} />
         </Routes>
       </div>
       <Footer/>
