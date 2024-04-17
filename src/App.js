@@ -39,15 +39,16 @@ if(loadingUSer) {
   return (
     <div className="App">
       <AuthProvider value={{user}}>
-      <Router>
-        <Navbar/>
+      <Router>        
       <div className="container">
+      <Navbar/>
         <Routes>
-            <Route path="/" element={<Home/>}/>
+            <Route path="/" element={user ? <Home/> : <Login/>}/>
             <Route path="/login" element={!user ? <Login/> : <Navigate to="/" />} />
-            <Route path="/register" element={!user ? <Register /> : <Navigate to="/register" />}/>
+            <Route path="/register" element={<Register />}/>
             <Route path="/lancados" element={user ? <Lancados/> : <Navigate to="/login" />} />
             <Route path="/lancados/edit/:id" element={user ? <EditLancamentos/> : <Navigate to="/login" />} />
+            <Route path="/lancados/mes/:id" element={user ? <Lancados/> : <Navigate to="/login" />} />
             <Route path="/lancamentos" element={user ? <Lancamentos/> : <Navigate to="/login" />} />
         </Routes>
       </div>

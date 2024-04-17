@@ -1,24 +1,48 @@
 import React from 'react'
 import styles from './Home.module.css'
-import { useAuthValue } from '../../context/AuthContext';
+import { getAuth } from "firebase/auth";
+
 
 function Home() {
-  const { user } = useAuthValue();
+
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   return (
-    <div className={styles.container_financeiro}>
-      <h3>Com o Finances Resource você pode:</h3>
-      <div className={styles.container_lista}>
-        <ul>
-          <li>Controle suas finanças de forma simples</li>
-          <li>Faça lançamentos mensais</li>
-          <li>Controle o vencimento</li>
-          <li>Altere o status conforme a necessidade</li>
-          <li>Visualize o resumo de gastos mensais</li>
-        </ul>
-        {!user && (<p><b>Crie uma conta ou faça login para começar!</b></p>)}
-        
+    <div>
+      <span className={styles.saudacao}>Olá {user.email}</span>
+      <div className={styles.container_financeiro}>
+        <h3 className={styles.container_h3}>Remuneração Entrada:</h3>
+          <div className={styles.container_lista}>
+            <ul>
+              <li>Salários - R$</li>
+              <li>Vale Alimentação - R$ </li>
+              <li>Vale Refeição - R$ </li>
+            </ul>
+            <span><b>Total: R$ </b></span>
+          </div>
       </div>
+      
+
+      <div className={styles.container_contas}>
+        <h3 className={styles.container_contas_h3}>Contas Fixas:</h3>
+          <div className={styles.container_lista_contas}>
+             <ul>
+              <li>Internet Celular Mislene - R$</li>
+              <li>Internet Celular William - R$ </li>
+              <li>Internet Casa - R$ </li>
+              <li>Luz - R$ </li>
+              <li>Compras - R$ </li>
+              <li>Entrada Apartamento - R$ </li>
+              <li>Evolução de Obra - R$ </li>
+              <li>Jhonata - R$ </li>
+              <li>Mae Mislene - R$ </li>
+              </ul>
+                <span><b>Total: R$ </b></span>
+      </div>
+      </div>
+      
+
     </div>
 
   )

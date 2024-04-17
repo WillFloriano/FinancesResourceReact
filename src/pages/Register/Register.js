@@ -10,8 +10,8 @@ const Register = () => {
     const [password, setPassword] = useState()
     const [confirmPassword, setConfirmPasssword] = useState("")
     const [error, setError] = useState("")
-
     const {createUser, error: authError, loading} = useAuthentication();
+    const [aviso, setAviso] = useState(null)
     
 
     const handleSubmit = async (e) => {
@@ -29,8 +29,23 @@ const Register = () => {
             return
         }
 
-        const res = await createUser(user);
-    };
+        const res = await createUser(user);                     
+    
+          setAviso("Cadastrado com sucesso!")
+    
+          if(!res.error)
+          {
+            const timer = setTimeout(() =>{
+                setAviso("");
+                setEmail("");
+                setPassword("");
+                setConfirmPasssword("");
+                
+              }, 1000);
+        
+              return () => clearTimeout(timer);
+          }
+    };    
 
     useEffect(() => {
         if(authError) {
@@ -58,6 +73,7 @@ const Register = () => {
         {!loading && <button className='btn'>Cadastrar</button>}
         {loading && <button className='btn' disabled>Aguarde...</button>}
         {error && <p className="error">{error}</p>}
+        {aviso && <p className="aviso">{aviso}</p>}
        </form>
     </div>
     )

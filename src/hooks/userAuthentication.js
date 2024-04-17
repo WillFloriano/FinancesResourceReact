@@ -1,9 +1,9 @@
-import { async } from '@firebase/util'
-import { db } from "../firebase/config"
+//import { async } from '@firebase/util'
+//import { db } from "../firebase/config"
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    siginInWithEmailAndPassword,
+    //siginInWithEmailAndPassword,
     updateProfile,
     signOut,
     signInWithEmailAndPassword

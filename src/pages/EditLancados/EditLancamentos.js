@@ -60,11 +60,16 @@ const Lancamentos = () => {
     if (!formError) {
       setTitle("")
       setVencimento("")
-      setValor("")
+      setValor("")      
       setAviso("Alterado com sucesso!")
     }
 
-    navigate("/lancados")
+    const timer = setTimeout(() =>{
+      navigate("/lancados/mes/" + post.mesLancamento);
+       
+    }, 1000);
+
+    return () => clearTimeout(timer);
 
   }
 

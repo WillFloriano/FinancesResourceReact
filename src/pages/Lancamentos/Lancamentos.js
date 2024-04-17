@@ -71,27 +71,35 @@ const Lancamentos = () => {
           <option>Outbro</option>
           <option>Novembro</option>
           <option>Dezembro</option>
-        </select>
-
+        </select>        
+      
+      {!mesLancamento && (
+          <div className={styles.noposts}>
+          <p>Não foram encontrados posts</p>
+        </div>)}
+      {mesLancamento && (
+        <div className={styles.form}>
         <label>
-          <span>Descrição:</span>
-          <input type="text" name="title" required placeholder="Descreva o evento" onChange={(e) => setTitle(e.target.value)} value={title} />
+        <span>Descrição:</span>
+        <input type="text" name="title" required placeholder="Descreva a compra" onChange={(e) => setTitle(e.target.value)} value={title} />
         </label>
         <label>
-          <span>Vencimento:</span>
-          <input type="date" name="vencimento" required placeholder="Dia de vencimento" onChange={(e) => setVencimento(e.target.value)} value={vencimento} />
-        </label>
+        <span>Dia da Compra:</span>
+        <input type="date" name="vencimento" required placeholder="Dia da compra" onChange={(e) => setVencimento(e.target.value)} value={vencimento} />
+       </label>
         <label>
-          <span>Valor</span>
-          <textarea name="valor" required placeholder="Insira o valor" onChange={(e) => setValor(e.target.value)} value={valor} />
-        </label>
-        {!response.loading && <button className='btn'>Cadastrar</button>}
-        {response.loading && <button className='btn' disabled>Aguarde...</button>}
-        {response.error && <p className="error">{response.error}</p>}
-        {formError && <p className="error">{formError}</p>}
-        {aviso && <p className="aviso">{aviso}</p>}
+        <span>Valor</span>
+        <textarea name="valor" required placeholder="preencher com ponto quando nao for inteiro" onChange={(e) => setValor(e.target.value)} value={valor} />
+      </label>        
+            {!response.loading && <button className='btn Lanc'>Cadastrar</button>}
+            {response.loading && <button className='btn Lanc' disabled>Aguarde...</button>}
+            {response.error && <p className="error">{response.error}</p>}
+            {formError && <p className="error">{formError}</p>}
+            {aviso && <p className="aviso">{aviso}</p>}
+      </div>
+      )}
       </form>
-    </div>
+      </div>                        
   )
 }
 

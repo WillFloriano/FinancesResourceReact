@@ -1,21 +1,34 @@
 import React from "react";
-import home from '../images/home.gif'
-import lancados from '../images/lancados.gif'
-import lancamentos from '../images/lancamentos.gif'
-import perfil from '../images/perfil.gif'
-import logout from '../images/logout.gif'
-import { Link } from "react-router-dom";
+import logo from '../images/Logo.png'
+import { NavLink } from 'react-router-dom'
+import styles from "./Navbar.module.css";
 
-export default function Menu() {
+import { useAuthValue } from '../context/AuthContext';
+
+
+const Navbar = () => {
+    const { user } = useAuthValue();
+
+
     return (
-        <div className="horizontal">
-            <ul className="ul">
-                <li className="liHome"><Link to="/home" style={{ textDecoration: 'none' }}><img src={home} alt="pagina inicial"></img>Home</Link></li>
-                <li className="liLancados"><Link to="/lancados" style={{ textDecoration: 'none' }}><img src={lancados} alt="lançados"></img>Eventos Lançados</Link></li>
-                <li className="liLancamentos"><Link to="/lancamentos" style={{ textDecoration: 'none' }}><img src={lancamentos} alt="lançamentos"></img>Novo Evento</Link></li>
-                <li className="liPerfil"><Link to="/profile" style={{ textDecoration: 'none' }}><img src={perfil} alt="perfil"></img>Perfil</Link></li>
-                <li className="liLogout"><Link to="/" style={{ textDecoration: 'none' }}><img src={logout} alt="Sair"></img>Sair do sistema</Link></li>
+        <nav className={styles.navbar}>
+            <NavLink to="/" className={styles.brand}>
+                Finances <span>Resource <img src={logo} alt="WF TECNOLOGY"/></span>
+            </NavLink>
+            <ul className={styles.links_list}>                
+                {!user && (
+                    <>
+                        <li>
+                            <NavLink to="/login" className={({ isActive }) => (isActive ? styles.active : "")}>Login</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/register" className={({ isActive }) => (isActive ? styles.active : "")}>Cadastrar</NavLink>
+                        </li>
+                    </>
+                )}                
             </ul>
-        </div>
+        </nav>
     )
 }
+
+export default Navbar

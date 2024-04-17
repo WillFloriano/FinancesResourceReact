@@ -106,6 +106,10 @@ button[disabled] {
   background-color: #aaa;
 }
 
+.Lanc{
+  margin-left: 62px;
+}
+
 .container .error {
 
   color: #721c24;
