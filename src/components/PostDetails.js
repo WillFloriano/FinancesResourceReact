@@ -31,13 +31,13 @@ const PostDetail = ({ mes, uid}) => {
           <span>Ações</span>          
         </div>                
         )} 
-        {posts && posts.map((post) => (          
+        {posts && posts.map((post) => (         
           <div className={styles.post_row} key={post.id}>   
           <ul>
             <li>{post.title}</li>
             <li>R$ {post.valor}</li>
             <li>{post.mesLancamento}</li>  
-            <li id="p_compra">{post.vencimento}</li>                     
+            <li id="p_compra">{new Date(post.vencimento).toLocaleDateString("pt-br")}</li>                     
           </ul>                                 
             <Link to={`/lancados/edit/${post.id}`} className="btn ">Editar</Link>
             <button onClick={() => deleteDocument(post.id)} className="btn btn-danger">Excluir</button>                    

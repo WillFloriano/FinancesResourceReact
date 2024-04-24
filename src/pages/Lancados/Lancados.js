@@ -1,4 +1,5 @@
 import styles from './Lancados.module.css'
+//import { useEffect } from 'react';
 
 //hooks
 //import { useNavigate, Link } from 'react-router-dom';
@@ -6,7 +7,6 @@ import { useState } from 'react';
 import PostDetail from '../../components/PostDetails';
 import { useAuthValue } from '../../context/AuthContext';
 import {useParams } from 'react-router-dom'
-
 
 const Lancados = () => {
 
@@ -20,8 +20,21 @@ const Lancados = () => {
   
   }
 
+  // useEffect(() => {
+
+  //   const script = document.createElement("script");
+  //   script.type = "text/javascript";
+  //   script.src = '../../../public/date.js';
+  //   script.async = true;
+  //   document.body.appendChild(script);
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
+  
+
   return (
-    <div className={styles.lancado}>
+    <div className={styles.lancado}>            
       <h2>Eventos Lançados</h2>
       <p>Selecione o mes para visualizar seus lançamentos!</p>      
       <form onSubmit={handleSubmit} className={styles.search_form}>
