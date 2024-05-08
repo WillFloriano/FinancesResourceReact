@@ -43,9 +43,13 @@ const PostDetail = ({ mes, uid}) => {
             <button onClick={() => deleteDocument(post.id)} className="btn btn-danger">Excluir</button>                    
           </div>          
         ))}
-        {posts &&
+        {posts && posts.length > 0 ? (
               
               <p>Total - R$ <span id="valTotal">{posts.map((post) => Math.round(parseFloat(post.valor))).reduce((total, valor) => total + valor)}</span> </p>          
+        ): (
+          <div className={styles.post_header}>
+        </div>
+        )
         }  
         
     </div>

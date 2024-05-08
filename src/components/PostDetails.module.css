@@ -75,3 +75,76 @@
     width: 880px;  
 }
 
+@media (max-width: 926px) {
+    .post_detail {
+     width: auto;
+    }
+    
+    .post_detail h2 {
+        font-size: 2.2em;
+        margin-bottom: .5em;
+    }
+    
+    .post_detail li {
+        color: #AAA;
+        margin-bottom: 1em;
+    }
+        
+    .post_row{
+        display: flex;
+        justify-content: space-around;
+        width: 400px;
+        padding: 10px;
+        align-items: center;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+        border-top: 1px solid black ;
+        border-left: 1px solid black;
+        margin-top: 10px;
+    }
+    
+    .post_header {
+        width: 400px;
+    }
+    
+    .post_row ul{
+      width: 50%;
+    }
+    
+    .post_row li {
+        width: 50px;
+    }
+    
+    .post_row button {
+        height: 20px;
+        width: 50px;
+        font-size:  0.5em;
+        text-align: center;
+    }
+    
+    .post_row a {
+        height: 10px;
+        width: 40px;
+        font-size:  0.5em;
+        background-color: #000;
+        color: #AAA;
+    }
+    
+    .post_sub_header{
+        display: flex;
+        border-bottom: 1px solid;
+        border-bottom-color: grey;
+        padding: 10px;
+        justify-content: space-around;
+        width: 400px;  
+    }
+
+    .btn.btn-danger {
+        width: 50px;
+      }
+    
+      .btn.btn-danger::before{
+        content: "x";
+      }
+}
+

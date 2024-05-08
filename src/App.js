@@ -52,10 +52,10 @@ if(loadingUSer) {
             <Route path="/lancados/mes/:id" element={user ? <Lancados/> : <Navigate to="/login" />} />
             <Route path="/lancamentos" element={user ? <Lancamentos/> : <Navigate to="/login" />} />
         </Routes>
-      </div>
-      <Footer/>
+      </div>     
       </Router>
       </AuthProvider>
+      <Footer/>
     </div>
   );
 }

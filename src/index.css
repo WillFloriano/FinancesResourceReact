@@ -124,3 +124,10 @@ button[disabled] {
   border-radius: 5px;
   border: 1px solid #f5c6cb
 }
+
+@media(max-width: 926px){
+  .Lanc{
+    margin-left: 1px;
+    margin-top: 15px;
+  }
+}

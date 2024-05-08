@@ -3,8 +3,10 @@ import styles from "./Footer.module.css"
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
-        <p>Finances Resource &copy; 2024</p>
+    <footer>
+      <div className={styles.rodape}>
+      <p>Finances Resource &copy; 2024</p>
+      </div>        
     </footer>
   )
 }
