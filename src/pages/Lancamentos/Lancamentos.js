@@ -39,9 +39,8 @@ const Lancamentos = () => {
     if (!formError) {
       setTitle("")
       setVencimento("")
-      setValor("")
+      setValor("")      
       setAviso("Cadastrado com sucesso!")
-      response.loading(false)
 
       const timer = setTimeout(() =>{
         setAviso("");
@@ -93,6 +92,7 @@ const Lancamentos = () => {
         <textarea name="valor" required placeholder="preencher com ponto quando nao for inteiro" onChange={(e) => setValor(e.target.value)} value={valor} />
       </label>        
             {!response.loading && <button className='btn Lanc'>Cadastrar</button>}
+            {response.loading && <button className='btn Lanc' disabled>Cadastrar</button>}
             {response.error && <p className="error">{response.error}</p>}
             {formError && <p className="error">{formError}</p>}
             {aviso && <p className="aviso">{aviso}</p>}
