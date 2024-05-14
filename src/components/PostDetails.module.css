@@ -77,74 +77,46 @@
 
 @media (max-width: 926px) {
     .post_detail {
-     width: auto;
+     width: 95%;
     }
-    
-    .post_detail h2 {
-        font-size: 2.2em;
-        margin-bottom: .5em;
+
+    .post_header {
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-around;
+        display: none;
     }
-    
-    .post_detail li {
-        color: #AAA;
-        margin-bottom: 1em;
-    }
-        
+            
     .post_row{
         display: flex;
         justify-content: space-around;
-        width: 400px;
-        padding: 10px;
+        width: 88%;
+        flex-direction: row;
         align-items: center;
         border-bottom: 1px solid black;
         border-right: 1px solid black;
         border-top: 1px solid black ;
         border-left: 1px solid black;
-        margin-top: 10px;
+        margin-left: 16px;
     }
-    
-    .post_header {
-        width: 400px;
-    }
-    
+
     .post_row ul{
-      width: 50%;
+        display: block;
     }
     
     .post_row li {
-        width: 50px;
-    }
-    
-    .post_row button {
-        height: 20px;
-        width: 50px;
-        font-size:  0.5em;
-        text-align: center;
-    }
-    
-    .post_row a {
-        height: 10px;
-        width: 40px;
-        font-size:  0.5em;
-        background-color: #000;
-        color: #AAA;
-    }
-    
-    .post_sub_header{
+        width: 100%;
         display: flex;
-        border-bottom: 1px solid;
-        border-bottom-color: grey;
-        padding: 10px;
-        justify-content: space-around;
-        width: 400px;  
+        justify-content: flex-start;
     }
 
-    .btn.btn-danger {
-        width: 50px;
-      }
     
-      .btn.btn-danger::before{
-        content: "x";
-      }
+    .post_row a {
+        width: 40%;
+        font-size:  0.8em;
+        background-color: #000;
+        color: #AAA;
+        margin-left: 20px;
+    }    
 }
 
