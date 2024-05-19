@@ -89,13 +89,13 @@ const Lancamentos = () => {
        </label>
         <label>
         <span>Valor</span>
-        <textarea name="valor" required placeholder="preencher com ponto quando nao for inteiro" onChange={(e) => setValor(e.target.value)} value={valor} />
-      </label>        
-            {!response.loading && <button className='btn Lanc'>Cadastrar</button>}
-            {response.loading && <button className='btn Lanc' disabled>Cadastrar</button>}
+        <textarea name="valor" required placeholder="preencher com ponto" onChange={(e) => setValor(e.target.value)} value={valor} />
+      </label>
+      {aviso && <p className="aviso">{aviso}</p>}        
+            <button className='btn Lanc'>Cadastrar</button>
+            
             {response.error && <p className="error">{response.error}</p>}
-            {formError && <p className="error">{formError}</p>}
-            {aviso && <p className="aviso">{aviso}</p>}
+            {formError && <p className="error">{formError}</p>}          
       </div>
       )}
       </form>
