@@ -5,7 +5,6 @@ import { useUpdateDocument } from '../../hooks/useUpdateDocument'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useFetchDocument } from '../../hooks/useFetchDocument'
 
-
 const Lancamentos = () => {
 
   const {id} = useParams();
@@ -18,7 +17,15 @@ const Lancamentos = () => {
   const [formError, setFormError] = useState("");
   const [aviso, setAviso] = useState(null);
 
+
   useEffect(() => {
+
+      const script = document.createElement('script');
+      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4910952789729743";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+  
+      document.head.appendChild(script);
 
     if(post) {
       setTitle(post.title)

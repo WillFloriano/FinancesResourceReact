@@ -1,5 +1,5 @@
 import styles from './Lancados.module.css'
-//import { useEffect } from 'react';
+import { useEffect } from 'react';
 
 //hooks
 //import { useNavigate, Link } from 'react-router-dom';
@@ -31,6 +31,18 @@ const Lancados = () => {
   //     document.body.removeChild(script);
   //   };
   // }, []);
+
+  
+useEffect(() => {
+  const script = document.createElement('script');
+
+  script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4910952789729743";
+  script.async = true;
+  script.crossOrigin = "anonymous";
+
+  document.head.appendChild(script);
+
+}, []);  
   
 
   return (

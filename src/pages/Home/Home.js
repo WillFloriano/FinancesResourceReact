@@ -1,12 +1,25 @@
 import React from 'react'
 import styles from './Home.module.css'
 import { getAuth } from "firebase/auth";
+import { useEffect } from 'react';
 
 
 function Home() {
 
   const auth = getAuth();
   const user = auth.currentUser;
+
+  
+useEffect(() => {
+  const script = document.createElement('script');
+
+  script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4910952789729743";
+  script.async = true;
+  script.crossOrigin = "anonymous";
+
+  document.head.appendChild(script);
+
+}, []);  
 
   return (
     <div>
