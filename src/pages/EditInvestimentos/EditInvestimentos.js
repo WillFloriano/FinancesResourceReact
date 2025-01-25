@@ -1,18 +1,19 @@
-import styles from './EditLancamentos.module.css'
+import styles from './EditInvestimentos.module.css'
 import { useState, useEffect } from 'react'
 import { useAuthValue } from '../../context/AuthContext'
 import { useUpdateDocument } from '../../hooks/useUpdateDocument'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useFetchDocument } from '../../hooks/useFetchDocument'
 
-const Lancamentos = () => {
+const EditInvestimentos = () => {
 
   const {id} = useParams();
-  const {document: post} = useFetchDocument("lancamentos", id);
+  const {document: post} = useFetchDocument("investimentos", id);
 
   const [title, setTitle] = useState("")
   const [valor, setValor] = useState("")
-  const [mesLancamento, setMesLancamento] = useState(null)
+  const [vencimento, setVencimento] = useState("")
+  const [indexador, setIndexador] = useState(null)
   const [formError, setFormError] = useState("");
   const [aviso, setAviso] = useState(null);
 
@@ -22,22 +23,23 @@ const Lancamentos = () => {
     if(post) {
       setTitle(post.title)
       setValor(post.valor)
-      setMesLancamento(post.mesLancamento)
+      setVencimento(post.vencimento)
+      setIndexador(post.indexador)
     }
 
   }, [post])
 
   const { user } = useAuthValue();
 
-  const { updateDocument, response } = useUpdateDocument("lancamentos");
+  const { updateDocument, response } = useUpdateDocument("investimentos");
 
-  const navigate = useNavigate();
+   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormError("")
 
-    if (!title || !valor || !mesLancamento) {
+    if (!title || !valor || !vencimento || !indexador) {
       setFormError("Todos os campos são obrigatórios!")
     }
 
@@ -46,9 +48,9 @@ const Lancamentos = () => {
     const data = {
       title,
       valor,
-      mesLancamento,
+      vencimento,
+      indexador,
       uid: user.uid,
-      createBy: user.email,
     }
 
 
@@ -56,36 +58,40 @@ const Lancamentos = () => {
 
     if (!formError) {
       setTitle("")
-      setValor("")      
+      setVencimento("")
+      setValor("") 
+      setIndexador("")     
       setAviso("Alterado com sucesso!")
     }
 
     const timer = setTimeout(() =>{
-      navigate("/lancados/mes/" + post.mesLancamento);
+      navigate("/Investimentos");
        
     }, 1000);
 
     return () => clearTimeout(timer);
-
   }
 
   return (
     <div className={styles.create_post}>
-      <h2>Editar Evento Lançado</h2>
-      <form onSubmit={handleSubmit}>
-        <select value={mesLancamento} className={styles.select} >
-          <option>{mesLancamento}</option>
-
-        </select>
-
+      <h2>Editar Investimento</h2>
+      <form onSubmit={handleSubmit}>            
         <label>
-          <span>Descrição:</span>
-          <input type="text" name="title" required placeholder="Descreva o evento" onChange={(e) => setTitle(e.target.value)} value={title} />
+        <span>Descrição:</span>
+        <input type="text" name="title" required placeholder="Descreva a compra" onChange={(e) => setTitle(e.target.value)} value={title} />
         </label>        
         <label>
-          <span>Valor</span>
-          <textarea name="valor" required placeholder="Insira o valor" onChange={(e) => setValor(e.target.value)} value={valor} />
+        <span>Valor</span>
+        <textarea name="valor" required placeholder="preencher com ponto" onChange={(e) => setValor(e.target.value)} value={valor} />
         </label>
+        <label>
+        <span>Indexador</span>
+        <textarea name="index" required placeholder="preencher indexador" onChange={(e) => setIndexador(e.target.value)} value={indexador} />
+        </label>
+      <label>
+        <span>Data de Vencimento</span>
+        <input type="date" name="vencimento" required onChange={(e) => setVencimento(e.target.value)} value={vencimento} />     
+      </label>        
         {!response.loading && <button className='btn'>Editar</button>}
         {response.loading && <button className='btn' disabled>Aguarde...</button>}
         {response.error && <p className="error">{response.error}</p>}
@@ -96,4 +102,4 @@ const Lancamentos = () => {
   )
 }
 
-export default Lancamentos
+export default EditInvestimentos

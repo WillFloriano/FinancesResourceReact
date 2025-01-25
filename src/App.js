@@ -16,7 +16,9 @@ import Register from './pages/Register/Register';
 import Lancados from './pages/Lancados/Lancados';
 import Lancamentos from './pages/Lancamentos/Lancamentos';
 import EditLancamentos from './pages/EditLancados/EditLancamentos';
-
+import Investimentos from './pages/Investimentos/Investimentos';
+import LancInvestimentos from './pages/Finances/LancInvestimentos';
+import EditInvestimentos from './pages/EditInvestimentos/EditInvestimentos';
 
 function App() {
 
@@ -51,6 +53,9 @@ if(loadingUSer) {
             <Route path="/lancados/edit/:id" element={user ? <EditLancamentos/> : <Navigate to="/login" />} />
             <Route path="/lancados/mes/:id" element={user ? <Lancados/> : <Navigate to="/login" />} />
             <Route path="/lancamentos" element={user ? <Lancamentos/> : <Navigate to="/login" />} />
+            <Route path="/lancinvestimentos" element={user ? <LancInvestimentos/> : <Navigate to="/login" />} />
+            <Route path="/investimentos" element={user ? <Investimentos/> : <Navigate to="/login" />} />
+            <Route path="/investimentos/edit/:id" element={user ? <EditInvestimentos/> : <Navigate to="/login" />} />
         </Routes>
       </div>     
       </Router>

@@ -1,5 +1,4 @@
 import styles from './Lancados.module.css'
-import { useEffect } from 'react';
 
 //hooks
 //import { useNavigate, Link } from 'react-router-dom';
@@ -19,32 +18,7 @@ const Lancados = () => {
     e.preventDefault() 
   
   }
-
-  // useEffect(() => {
-
-  //   const script = document.createElement("script");
-  //   script.type = "text/javascript";
-  //   script.src = '../../../public/date.js';
-  //   script.async = true;
-  //   document.body.appendChild(script);
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   };
-  // }, []);
-
-  
-useEffect(() => {
-  const script = document.createElement('script');
-
-  script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4910952789729743";
-  script.async = true;
-  script.crossOrigin = "anonymous";
-
-  document.head.appendChild(script);
-
-}, []);  
-  
-
+    
   return (
     <div className={styles.lancado}>            
       <h2>Eventos Lançados</h2>
@@ -61,7 +35,7 @@ useEffect(() => {
           <option>Julho</option>
           <option>Agosto</option>
           <option>Setembro</option>
-          <option>Outbro</option>
+          <option>Outubro</option>
           <option>Novembro</option>
           <option>Dezembro</option>
         </select>
@@ -73,7 +47,7 @@ useEffect(() => {
           </div>) : (
           !mesLancamento && (
           <div className={styles.noposts}>
-            <p>Não foram encontrados posts</p>
+            <p>Não foram encontrados dados</p>
           </div>
         ))}
         {mesLancamento && (

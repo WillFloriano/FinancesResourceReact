@@ -30,7 +30,7 @@
 }
 
 .active{
-    background-color: #000;
+
     color: #fff;
   }
 
@@ -57,4 +57,95 @@
         padding-inline: 5px;
         justify-content: center;
     }
+  }
+
+ /* Navbar.module.css */
+
+/* Menu Principal */
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Itens do Menu */
+  .menuItem {
+    display: inline-block;
+    position: relative;
+    margin: 0 10px;
+  }
+  
+  .menuItem span,
+  .menuItem button {
+    text-decoration: none;
+    color: black;
+    padding: 10px 15px;
+    display: block;
+    cursor: pointer;   
+  }
+  
+  /* Submenu */
+  .submenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    min-width: 200px;
+  }
+  
+  /* Submenu Itens */
+  .submenu li {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    display: block;
+  }
+  
+  /* Ativar estilo quando o link estiver ativo */
+  .active {
+    font-weight: bold;
+    color: #0056b3;
+  }
+  
+  
+  .liOculta{
+    display: none !important;
+  }
+
+  .menuItemM {
+    display: none;
+    position: relative;
+    margin: 0 10px;
+  }
+  
+  .menuItemM span,
+  .menuItemM button {
+    text-decoration: none;
+    color: black;
+    padding: 10px 15px;
+    display: none;
+    cursor: pointer;
+  }
+
+  .submenuM {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    min-width: 160px;
+  }
+
+  .submenuM li {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    display: inline-flex;
   }

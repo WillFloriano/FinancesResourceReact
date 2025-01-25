@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase/config"
-import { collection, query, orderBy, onSnapshot, where } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
-export const useFetchDocuments = (docCollection, mesLancamento, uid) => {
+export const useFetchInvestimentos = (docCollection) => {
 
     const [documents, setDocuments] = useState(null)
     const [error, setError] = useState(null)
@@ -26,16 +26,9 @@ export const useFetchDocuments = (docCollection, mesLancamento, uid) => {
 
                 //busca
                 //dashboard
-                if(mesLancamento)
-                {
-                    if(uid === "wjuppa1J53bsHiZIhlbAqrCuic03")
-                    {
-                        q = await query(collectionRef, where("mesLancamento", "==", mesLancamento), where("dividido", "==", "Sim"))
-                    }
-                    else{
-                        q = await query(collectionRef, where("mesLancamento", "==", mesLancamento), where("uid", "==", uid), orderBy('createAt', "desc"))
-                    }                    
-                }                           
+                                
+                q = await query(collectionRef, orderBy('vencimento'))                                       
+                                           
 
                 await onSnapshot(q, (querySnapshot) => {
                     setDocuments(
@@ -56,7 +49,7 @@ export const useFetchDocuments = (docCollection, mesLancamento, uid) => {
         }
         loadData();
         return () => clearTimeout(loadData)
-    }, [docCollection, cancelled, mesLancamento, uid]);
+    }, [docCollection, cancelled]);
 
     useEffect(() => {
         return () => setCancelled(true);

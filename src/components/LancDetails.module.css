@@ -1,0 +1,122 @@
+.post_detail {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.post_detail h2 {
+    font-size: 2.2em;
+    margin-bottom: .5em;
+}
+
+.post_detail li {
+    color: #AAA;
+    margin-bottom: 1em;
+}
+
+
+.post_row{
+    display: flex;
+    justify-content: space-around;
+    width: 880px;
+    padding: 10px;
+    align-items: center;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black ;
+    border-left: 1px solid black;
+    margin-top: 10px;
+}
+
+.post_header {
+    font-weight: bold;
+    border-bottom: 2px solid #CCC;
+    display: flex;
+    width: 765px;
+    justify-content: space-between;
+}
+
+.post_row ul{
+  display: flex;
+  list-style: none;
+  width: 75%;
+}
+
+.post_row li {
+    color:  #000;
+    border-right: 1px solid black;
+    width: 240px;
+}
+
+.post_row button {
+    margin: 0 5px;
+    height: 30px;
+    width: 100px;
+    font-size:  0.7em;
+}
+
+.post_row a {
+    margin: 0 5px;
+    height: 10px;
+    width: 80px;
+    font-size:  0.7em;
+    background-color: #000;
+    color: #AAA;
+}
+
+.post_sub_header{
+    display: flex;
+    border-bottom: 1px solid;
+    border-bottom-color: grey;
+    padding: 10px;
+    justify-content: space-around;
+    width: 880px;  
+}
+
+@media (max-width: 926px) {
+    .post_detail {
+     width: 95%;
+    }
+
+    .post_header {
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-around;
+        display: none;
+    }
+            
+    .post_row{
+        display: flex;
+        justify-content: space-around;
+        width: 88%;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+        border-top: 1px solid black ;
+        border-left: 1px solid black;
+        margin-left: 16px;
+    }
+
+    .post_row ul{
+        display: block;
+    }
+    
+    .post_row li {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    
+    .post_row a {
+        width: 40%;
+        font-size:  0.8em;
+        background-color: #000;
+        color: #AAA;
+        margin-left: 20px;
+    }    
+}
+

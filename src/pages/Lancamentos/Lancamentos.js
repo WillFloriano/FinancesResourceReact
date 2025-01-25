@@ -9,7 +9,7 @@ const Lancamentos = () => {
 
   const [title, setTitle] = useState("")
   const [valor, setValor] = useState("")
-  const [vencimento, setVencimento] = useState("")
+  const [dividido, setDividido] = useState("")
   const [mesLancamento, setMesLancamento] = useState(null)
   const [formError, setFormError] = useState("");
   const [aviso, setAviso] = useState(null)
@@ -22,7 +22,7 @@ const Lancamentos = () => {
     e.preventDefault();
     setFormError("")
 
-    if (!title || !valor || !vencimento || !mesLancamento) {
+    if (!title || !valor || !mesLancamento || !dividido) {
       setFormError("Todos os campos são obrigatórios!")
     }
 
@@ -31,15 +31,15 @@ const Lancamentos = () => {
     insertDocument({
       title,
       valor,
-      vencimento,
       mesLancamento,
       uid: user.uid,
       createBy: user.email,
+      dividido,
     });
 
     if (!formError) {
       setTitle("")
-      setVencimento("")
+      setDividido("")
       setValor("")      
       setAviso("Cadastrado com sucesso!")
 
@@ -96,14 +96,18 @@ useEffect(() => {
         <label>
         <span>Descrição:</span>
         <input type="text" name="title" required placeholder="Descreva a compra" onChange={(e) => setTitle(e.target.value)} value={title} />
-        </label>
-        <label>
-        <span>Dia da Compra:</span>
-        <input type="date" name="vencimento" required placeholder="Dia da compra" onChange={(e) => setVencimento(e.target.value)} value={vencimento} />
-       </label>
+        </label>        
         <label>
         <span>Valor</span>
         <textarea name="valor" required placeholder="preencher com ponto" onChange={(e) => setValor(e.target.value)} value={valor} />
+      </label>
+      <label>
+        <span>Dividido</span>
+        <select value={dividido} className={styles.select} onChange={e => setDividido(e.target.value)}>
+          <option>Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>          
+        </select>        
       </label>
       {aviso && <p className="aviso">{aviso}</p>}        
             <button className='btn Lanc'>Cadastrar</button>

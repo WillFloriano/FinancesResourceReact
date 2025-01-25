@@ -1,24 +1,23 @@
 import React from "react";
-import logo from '../images/Logo.png'
+import logo from '../images/LogoNovo.png'
 //import { useNavigate } from "react-router-dom";
 import { NavLink } from 'react-router-dom'
 import styles from "./Navbar.module.css";
 
-import { useAuthentication } from '../hooks/userAuthentication';
-
 import { useAuthValue } from '../context/AuthContext';
+
+import Menu from './Menu';
 
 
 const Navbar = () => {
     const { user } = useAuthValue();
-    const { logout } = useAuthentication();
 
     //const navigate = useNavigate();
 
     return (
         <nav className={styles.navbar}>
             <NavLink to="/" className={styles.brand}>
-                Finances <span>Resource <img src={logo} alt="WF TECNOLOGY"/></span>
+                Finances <span>Resource <img src={logo} alt="WMZR TECNOLOGY"/></span>
             </NavLink>
             <ul className={styles.links_list}>                
                 {!user && (
@@ -32,21 +31,11 @@ const Navbar = () => {
                     </>
                 )}
                 {user && (
-                    <>
                         <li>
-                            <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : "")}>Home </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/lancamentos" className={({ isActive }) => (isActive ? styles.active : "")}>Novo Lancamento</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/lancados" className={({ isActive }) => (isActive ? styles.active : "")}>Eventos Lançados</NavLink>
-                        </li>
-                        <li>
-                            <button onClick={logout}>Sair</button>
-                        </li>
-                    </>
+                            <Menu></Menu>
+                        </li>                                            
                 )}
+                
             </ul>
         </nav>
     )
