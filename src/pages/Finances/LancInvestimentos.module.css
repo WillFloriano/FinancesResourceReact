@@ -1,5 +1,5 @@
 .create_post{
-    text-align: center;
+    text-align: center;    
 }
 
 .create_post h2 {
@@ -28,10 +28,6 @@
     width: 54%;
     margin-left: 154px;
 }
-
-/* .aviso {
-    
-} */
 
 
 @media (max-width: 926px) {          

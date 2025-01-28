@@ -1,9 +1,3 @@
-.lancado{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 .search_form {
     max-width: 100%;
@@ -33,3 +27,16 @@
 .select{
     width: 200px;
 }
+
+.tableHeader{
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.tableFixo{
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+  

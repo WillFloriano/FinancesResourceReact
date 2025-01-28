@@ -10,6 +10,7 @@ const LancInvestimentos = () => {
   const [title, setTitle] = useState("")
   const [valor, setValor] = useState("")
   const [vencimento, setVencimento] = useState("")
+  const [quantidade, setQuantidade] = useState("")
   const [indexador, setIndexador] = useState(null)
   const [formError, setFormError] = useState("");
   const [aviso, setAviso] = useState(null)
@@ -33,6 +34,7 @@ const LancInvestimentos = () => {
       valor,
       vencimento,
       indexador,
+      quantidade,
       uid: user.uid,
     });
 
@@ -40,7 +42,8 @@ const LancInvestimentos = () => {
       setTitle("")
       setVencimento("")
       setValor("")
-      setIndexador("")      
+      setIndexador("")  
+      setQuantidade("")    
       setAviso("Cadastrado com sucesso!")
 
       const timer = setTimeout(() =>{
@@ -60,19 +63,23 @@ const LancInvestimentos = () => {
         <div className={styles.form}>
         <label>
         <span>Descrição:</span>
-        <input type="text" name="title" required placeholder="Descreva a compra" onChange={(e) => setTitle(e.target.value)} value={title} />
+        <input type="text" name="title" required placeholder="Descreva a compra" onChange={(e) => setTitle(e.target.value)} />
         </label>        
         <label>
         <span>Valor</span>
-        <textarea name="valor" required placeholder="preencher com ponto" onChange={(e) => setValor(e.target.value)} value={valor} />
+        <textarea name="valor" required placeholder="preencher com ponto" onChange={(e) => setValor(e.target.value)} />
         </label>
         <label>
         <span>Indexador</span>
-        <textarea name="index" required placeholder="preencher indexador" onChange={(e) => setIndexador(e.target.value)} value={indexador} />
+        <textarea name="index" required placeholder="preencher indexador" onChange={(e) => setIndexador(e.target.value)} />
+        </label>
+        <label>
+        <span>Quantidade</span>
+        <textarea name="qtd" required placeholder="preencher quantidade" onChange={(e) => setQuantidade(e.target.value)} />
         </label>
       <label>
         <span>Data de Vencimento</span>
-        <input type="date" name="vencimento" required onChange={(e) => setVencimento(e.target.value)} value={vencimento} />     
+        <input type="date" name="vencimento" required onChange={(e) => setVencimento(e.target.value)} />     
       </label>
       {aviso && <p className="aviso">{aviso}</p>}        
             <button className='btn Lanc'>Cadastrar</button>

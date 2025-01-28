@@ -47,9 +47,11 @@ const PostDetail = ({ mes, uid}) => {
             }                 
             <li>{post.mesLancamento}</li>     
             </ul>                         
-            {user.uid !== "wjuppa1J53bsHiZIhlbAqrCuic03" && (                       
-              <div><Link to={`/lancados/edit/${post.id}`} className="btn ">Editar</Link>
-              <button onClick={() => deleteDocument(post.id)} className="btn btn-danger">Excluir</button></div>
+            {user.uid !== "wjuppa1J53bsHiZIhlbAqrCuic03" && (      
+              <div>                 
+              <div className={styles.btnEditar}><Link to={`/lancados/edit/${post.id}`}>Editar</Link></div>
+              <div className={styles.btnExcluir} onClick={() => deleteDocument(post.id)}>Excluir</div>
+              </div>
             )}                                                                           
               </div>      
         ))}

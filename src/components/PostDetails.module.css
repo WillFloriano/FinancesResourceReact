@@ -50,20 +50,28 @@
     width: 240px;
 }
 
-.post_row button {
-    margin: 0 5px;
-    height: 30px;
+.btnExcluir {
+    height: 20px;
     width: 100px;
-    font-size:  0.7em;
+    font-size:  0.9em;
+    background-color: maroon;
+    border-radius: 5px;
+    color: white;
+    justify-content: center;
+    display: flex;
+    margin-top: 5px;
 }
 
-.post_row a {
-    margin: 0 5px;
-    height: 10px;
-    width: 80px;
-    font-size:  0.7em;
-    background-color: #000;
-    color: #AAA;
+.btnEditar {
+    height: 20px;
+    width: 100px;
+    font-size:  0.9em;
+    background-color: gray;
+    border-radius: 5px;
+    color: #000;
+    justify-content: center;
+    display: flex;
+    margin-top: 5px;
 }
 
 .post_sub_header{
@@ -115,8 +123,124 @@
         width: 40%;
         font-size:  0.8em;
         background-color: #000;
-        color: #AAA;
         margin-left: 20px;
     }    
 }
 
+/* Estilo base */
+.post_detail {
+    padding: 20px;
+    font-size: 14px;
+  }
+  
+  .post_header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .post_header span {
+    font-weight: bold;
+  }
+  
+  .post_row {
+    margin-bottom: 10px;
+  }
+  
+  /* ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  ul li {
+    width: 24%;
+    text-align: center;
+  }
+  
+  ul li:nth-child(4) {
+    width: auto;
+    text-align: right;
+  } */
+  
+  .btn {
+    margin-right: 10px;
+  }
+  
+  /* Responsividade para telas pequenas */
+  @media (max-width: 768px) {
+
+    ul {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 15px;
+      justify-content: center;
+    }
+  
+    ul li {
+      width: 100%;
+      text-align: right;
+      margin-bottom: 5px;
+    }     
+}
+  
+  /* Ajustes para telas menores (como smartphones) */
+  @media (max-width: 480px) {
+    ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 25px;
+        justify-content: center;
+      }
+
+      ul li {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+      }  
+    
+    .post_row ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+      }
+    
+      .post_row ul li {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+        display: flex;
+      }  
+
+      .post_row{
+        display: flex;
+        width: 100%;
+        margin: 0   ;
+      }
+
+      .btnEditar {
+        border-radius: 5px;
+        background-color: gray;
+        text-align: center;
+        display: flex;
+      }
+
+      .btnExcluir {
+        border-radius: 5px;
+        background-color: maroon;
+        text-align: center;
+        display: flex;
+      }
+
+      .post_row a {
+        text-decoration: none;
+        background-color: transparent;
+        color: #000;
+        font-size: 12px;
+      }
+  }
+  

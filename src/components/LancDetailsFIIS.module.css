@@ -1,3 +1,4 @@
+
   .btnEditar{
     background-color: gray;
     color: white;
@@ -11,7 +12,6 @@
     border-radius: 5px;
     cursor: pointer;
 }
-
 
 /* Estilo base para a tabela */
 .divTable {
@@ -32,7 +32,20 @@
   font-weight: bold;
 }
 
-/* Ajustes para dispositivos móveis */
+/* Responsividade para telas pequenas */
 @media (max-width: 768px) {
   
+}
+
+/* Ajustes ainda mais finos para telas menores, como smartphones */
+@media (max-width: 480px) {
+  .divTable td, .divTable th {
+    padding: 6px;
+    font-size: 10px;
+  }
+
+  .divTable .btnEditar, .divTable .btnExcluir {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
 }
