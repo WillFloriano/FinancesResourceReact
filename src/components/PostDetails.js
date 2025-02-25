@@ -37,14 +37,9 @@ const PostDetail = ({ mes, uid}) => {
           <div className={styles.post_row} key={post.id}>   
           <ul>
             <li>{post.title}</li>
-            {user.uid === "wjuppa1J53bsHiZIhlbAqrCuic03" && 
-              (<li>R$ {Math.round(post.valor/2)}</li>)
-
-            }                           
-            {user.uid !== "wjuppa1J53bsHiZIhlbAqrCuic03" && 
-              (<li>R$ {post.valor}</li>)
-
-            }                 
+                           
+            <li>R$ {post.valor}</li>
+               
             <li>{post.mesLancamento}</li>     
             </ul>                         
             {user.uid !== "wjuppa1J53bsHiZIhlbAqrCuic03" && (      
@@ -56,17 +51,8 @@ const PostDetail = ({ mes, uid}) => {
               </div>      
         ))}
         {posts && posts.length > 0 ? (                                   
-              <p>Total - R$ 
-                 {user.uid === "wjuppa1J53bsHiZIhlbAqrCuic03" && 
-                  (
-                    <span id="valTotal">{posts.map((post) => Math.round(parseFloat(post.valor/2))).reduce((total, valor) => total + valor)}</span>
-                  )
-                }                           
-                {user.uid !== "wjuppa1J53bsHiZIhlbAqrCuic03" && 
-                 (
-                  <span id="valTotal">{posts.map((post) => Math.round(parseFloat(post.valor))).reduce((total, valor) => total + valor)}</span>
-                 )
-                }                   
+              <p>Total - R$                                                         
+                  <span id="valTotal">{posts.map((post) => Math.round(parseFloat(post.valor))).reduce((total, valor) => total + valor)}</span>                                   
                  </p>          
         ): (
           <div className={styles.post_header}>

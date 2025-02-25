@@ -31,6 +31,7 @@ const Investimentos = () => {
                       <th>Quantidade</th>
                       <th>Vlr. Pago</th>
                       <th>Vlr. Corrente</th>
+                      <th>Qtd Final</th>
                       <th>Ações</th>
                     </tr>
             </thead>   

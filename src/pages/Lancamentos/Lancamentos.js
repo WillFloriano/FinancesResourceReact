@@ -3,44 +3,65 @@ import { useState } from 'react'
 import { useAuthValue } from '../../context/AuthContext'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const Lancamentos = () => {
 
   const [title, setTitle] = useState("")
   const [valor, setValor] = useState("")
-  const [dividido, setDividido] = useState("")
-  const [mesLancamento, setMesLancamento] = useState(null)
+  const [mesLancando, setMesLancando] = useState(null)
+  const [parcela, setParcela] = useState("")
   const [formError, setFormError] = useState("");
   const [aviso, setAviso] = useState(null)
 
   const { user } = useAuthValue();
 
-  const { insertDocument, response } = useInsertDocument("lancamentos", setMesLancamento)
+  const { insertDocument, response } = useInsertDocument("lancamentos")
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormError("")
 
-    if (!title || !valor || !mesLancamento || !dividido) {
+    if (!title || !valor || !mesLancando || !parcela) {
       setFormError("Todos os campos são obrigatórios!")
     }
 
     if (formError) return;
 
-    insertDocument({
-      title,
-      valor,
-      mesLancamento,
-      uid: user.uid,
-      createBy: user.email,
-      dividido,
-    });
+    var inserido = 0;
+    var mes = mesLancando
 
+    if(parcela > 1)
+      {
+          while(parcela > inserido)
+          {                        
+            
+            insertDocument({
+              title,
+              valor,
+              mes,
+              uid: user.uid,
+              createBy: user.email,
+            });  
+
+            inserido++
+            mes++
+
+          }
+      }else{
+        insertDocument({
+          title,
+          valor,
+          mes,
+          uid: user.uid,
+          createBy: user.email,
+        });
+      }
+        
     if (!formError) {
       setTitle("")
-      setDividido("")
-      setValor("")      
+      setValor("")
+      setParcela("")     
       setAviso("Cadastrado com sucesso!")
 
       const timer = setTimeout(() =>{
@@ -54,16 +75,16 @@ const Lancamentos = () => {
   }
 
   
-useEffect(() => {
-  const script = document.createElement('script');
+// useEffect(() => {
+//   const script = document.createElement('script');
 
-  script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4910952789729743";
-  script.async = true;
-  script.crossOrigin = "anonymous";
+//   script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4910952789729743";
+//   script.async = true;
+//   script.crossOrigin = "anonymous";
 
-  document.head.appendChild(script);
+//   document.head.appendChild(script);
 
-}, []);  
+// }, []);  
 
 
   return (
@@ -71,27 +92,27 @@ useEffect(() => {
       <h2>Criar Lançamento</h2>
       <p>Selecione o mes e realize seu lançamento!</p>
       <form onSubmit={handleSubmit}>
-        <select value={mesLancamento} className={styles.select} onChange={e => setMesLancamento(e.target.value)}>
-          <option>Selecione</option>
-          <option>Janeiro</option>
-          <option>Fevereiro</option>
-          <option>Março</option>
-          <option>Abril</option>
-          <option>Maio</option>
-          <option>Junho</option>
-          <option>Julho</option>
-          <option>Agosto</option>
-          <option>Setembro</option>
-          <option>Outbro</option>
-          <option>Novembro</option>
-          <option>Dezembro</option>
+        <select value={mesLancando} className={styles.select} onChange={e => setMesLancando(parseInt(e.target.value))}>
+          <option value={0}>Selecione</option>
+          <option value={1}>Janeiro</option>
+          <option value={2}>Fevereiro</option>
+          <option value={3}>Março</option>
+          <option value={4}>Abril</option>
+          <option value={5}>Maio</option>
+          <option value={6}>Junho</option>
+          <option value={7}>Julho</option>
+          <option value={8}>Agosto</option>
+          <option value={9}>Setembro</option>
+          <option value={10}>Outbro</option>
+          <option value={11}>Novembro</option>
+          <option value={12}>Dezembro</option>
         </select>        
       
-      {!mesLancamento && (
+      {!mesLancando && (
           <div className={styles.noposts}>
           <p>Não foram encontrados posts</p>
         </div>)}
-      {mesLancamento && (
+      {mesLancando && (
         <div className={styles.form}>
         <label>
         <span>Descrição:</span>
@@ -100,15 +121,9 @@ useEffect(() => {
         <label>
         <span>Valor</span>
         <textarea name="valor" required placeholder="preencher com ponto" onChange={(e) => setValor(e.target.value)} value={valor} />
-      </label>
-      <label>
-        <span>Dividido</span>
-        <select value={dividido} className={styles.select} onChange={e => setDividido(e.target.value)}>
-          <option>Selecione</option>
-          <option>Sim</option>
-          <option>Não</option>          
-        </select>        
-      </label>
+        <span>Parcela</span>
+        <input type='number' name="parcela" required onChange={(e) => setParcela(e.target.value)} value={parcela} />
+      </label>      
       {aviso && <p className="aviso">{aviso}</p>}        
             <button className='btn Lanc'>Cadastrar</button>
             

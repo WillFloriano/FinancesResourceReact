@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase/config"
-import { collection, query, orderBy, onSnapshot, where } from "firebase/firestore";
+import { collection, query, onSnapshot, where } from "firebase/firestore";
 
 export const useFetchDocuments = (docCollection, mesLancamento, uid) => {
 
@@ -15,7 +15,6 @@ export const useFetchDocuments = (docCollection, mesLancamento, uid) => {
 
         async function loadData() {
           
-
             setLoading(true)
 
             const collectionRef = await collection(db, docCollection)
@@ -28,13 +27,8 @@ export const useFetchDocuments = (docCollection, mesLancamento, uid) => {
                 //dashboard
                 if(mesLancamento)
                 {
-                    if(uid === "wjuppa1J53bsHiZIhlbAqrCuic03")
-                    {
-                        q = await query(collectionRef, where("mesLancamento", "==", mesLancamento), where("dividido", "==", "Sim"))
-                    }
-                    else{
-                        q = await query(collectionRef, where("mesLancamento", "==", mesLancamento), where("uid", "==", uid), orderBy('createAt', "desc"))
-                    }                    
+                    console.log("mes a ser consultado = " + mesLancamento)
+                    q = await query(collectionRef, where("mes", "==", mesLancamento), where("uid", "==", uid))                                       
                 }                           
 
                 await onSnapshot(q, (querySnapshot) => {

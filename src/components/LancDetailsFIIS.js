@@ -7,7 +7,7 @@ import FormatNumber from './FormatNumber'
 
 import styles from './LancDetailsFIIS.module.css'
 
-const LancDetail = () => {
+const LancDetailFii = () => {
   
   const { documents: posts, loading } = useFetchInvestimentos("investimentos")
 
@@ -31,9 +31,10 @@ const LancDetail = () => {
                 <td data-label="Valor">{FormatNumber(post.valor * post.qtd)}</td>
                 <td data-label="Vencimento">{new Date(post.vencimento).toLocaleDateString("pt-br")}</td>
                 <td data-label="Indexador">{post.indexador}</td>
-                <td data-label="Quantidade">{post.qtd}</td>
-                <td data-label="Valor Unitário">{FormatNumber(post.valor)}</td>
-                <td data-label="Valor Total">R$ 0,00</td>
+                <td data-label="Qtd">{post.qtd}</td>
+                <td data-label="Vlr Unitário">{FormatNumber(post.valor)}</td>
+                <td data-label="Vlr Total">R$ 0,00</td>
+                <td data-label="Qtd Final">{post.qtdFinal}</td>
                 <td className={styles.btnEditar}>
                   <Link to={`/investimentos/edit/${post.id}`}>Editar</Link>
                 </td>
@@ -46,11 +47,7 @@ const LancDetail = () => {
         </>
       )}
     </tbody>
-  );
-  
-  
-  
-  
+  );        
 }   
 
-export default LancDetail
+export default LancDetailFii

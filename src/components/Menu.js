@@ -22,16 +22,16 @@ const Menu = () => {
       {user.uid === "wjuppa1J53bsHiZIhlbAqrCuic03" && (
         <>
         <span>{user.email}</span>
-          <ul className={styles.menu}>
+          <ul className={styles.menuM}>
             <li
-              className={styles.menuItem}
+              className={styles.menuItemM}
               onMouseEnter={handleLançamentosMouseEnter}
               onMouseLeave={handleLançamentosMouseLeave}
             >
               <span>Lançamentos</span>
               {isLançamentosSubmenuVisible && (
                 <ul className={styles.submenuM}>
-                  <li className={styles.liOculta}>
+                  <li>
                     <NavLink to="/lancamentos" className={({ isActive }) => (isActive ? styles.active : "")}>
                       Novo Lançamento
                     </NavLink>
@@ -46,13 +46,13 @@ const Menu = () => {
             </li>
 
             <li
-              className={styles.menuItemM}
+              className={styles.liOculta}
               onMouseEnter={handleInvestimentosMouseEnter}
               onMouseLeave={handleInvestimentosMouseLeave}
             >
               <span>Investimentos</span>
               {isInvestimentosSubmenuVisible && (
-                <ul className={styles.submenu}>
+                <ul className={styles.liOculta}>
                   <li>
                     <NavLink to="/lancinvestimentos" className={({ isActive }) => (isActive ? styles.active : "")}>
                       Novo Investimento
