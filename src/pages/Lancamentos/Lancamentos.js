@@ -11,7 +11,9 @@ const Lancamentos = () => {
   const [valor, setValor] = useState("")
   const [mesLancando, setMesLancando] = useState(null)
   const [parcela, setParcela] = useState("")
-  const [formError, setFormError] = useState("");
+  const [categoria, setCategoria] = useState("")
+  const [comprador, setComprador] = useState(null)
+  const [formError, setFormError] = useState(null);
   const [aviso, setAviso] = useState(null)
 
   const { user } = useAuthValue();
@@ -22,7 +24,7 @@ const Lancamentos = () => {
     e.preventDefault();
     setFormError("")
 
-    if (!title || !valor || !mesLancando || !parcela) {
+    if (!title || !valor || !mesLancando || !parcela || !categoria || !comprador) {
       setFormError("Todos os campos são obrigatórios!")
     }
 
@@ -40,6 +42,8 @@ const Lancamentos = () => {
               title,
               valor,
               mes,
+              categoria,
+              comprador,
               uid: user.uid,
               createBy: user.email,
             });  
@@ -53,6 +57,8 @@ const Lancamentos = () => {
           title,
           valor,
           mes,
+          categoria,
+          comprador,
           uid: user.uid,
           createBy: user.email,
         });
@@ -61,7 +67,9 @@ const Lancamentos = () => {
     if (!formError) {
       setTitle("")
       setValor("")
-      setParcela("")     
+      setParcela("")   
+      setCategoria("") 
+      setComprador("") 
       setAviso("Cadastrado com sucesso!")
 
       const timer = setTimeout(() =>{
@@ -114,6 +122,33 @@ const Lancamentos = () => {
         </div>)}
       {mesLancando && (
         <div className={styles.form}>
+          <label>
+        <span>Categoria</span>
+        <select value={categoria}  onChange={e => setCategoria(e.target.value)}>
+          <option value={0}>Selecione</option>
+          <option value={"Casa"}>Casa</option>
+          <option value={"Fast Food"}>Fast Food</option>
+          <option value={"Farmacia"}>Farmacia</option>
+          <option value={"Gatos"}>Gatos</option>
+          <option value={"Gasolina"}>Gasolina</option>
+          <option value={"Lazer"}>Lazer</option>
+          <option value={"Mercado"}>Mercado</option>
+          <option value={"MarketPlace"}>MarketPlace</option>                              
+          {/* <option value={9}></option>
+          <option value={10}></option>
+          <option value={11}></option>
+          <option value={12}></option> */}
+        </select>        
+      </label>  
+      <label>
+      <span>Comprador</span>
+      <select value={comprador} onChange={e => setComprador(e.target.value)}>
+          <option value={0}>Selecione</option>
+          <option value={"Ambos"}>Ambos</option>
+          <option value={"Will"}>Will</option>
+          <option value={"Mis"}>Mis</option>
+        </select>        
+      </label>  
         <label>
         <span>Descrição:</span>
         <input type="text" name="title" required placeholder="Descreva a compra" onChange={(e) => setTitle(e.target.value)} value={title} />
@@ -123,7 +158,7 @@ const Lancamentos = () => {
         <textarea name="valor" required placeholder="preencher com ponto" onChange={(e) => setValor(e.target.value)} value={valor} />
         <span>Parcela</span>
         <input type='number' name="parcela" required onChange={(e) => setParcela(e.target.value)} value={parcela} />
-      </label>      
+      </label>          
       {aviso && <p className="aviso">{aviso}</p>}        
             <button className='btn Lanc'>Cadastrar</button>
             

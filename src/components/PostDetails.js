@@ -29,7 +29,7 @@ const PostDetail = ({ mes, uid}) => {
           <div className={styles.post_header}>
            <span>Descrição</span>
             <span>Valor</span>
-            <span>Mês</span>
+            <span>Categoria</span>
           <span>Ações</span>          
         </div>                
         )} 
@@ -40,19 +40,24 @@ const PostDetail = ({ mes, uid}) => {
                            
             <li>R$ {post.valor}</li>
                
-            <li>{post.mesLancamento}</li>     
+            <li>{post.categoria}</li>     
             </ul>                         
-            {user.uid !== "wjuppa1J53bsHiZIhlbAqrCuic03" && (      
+               
               <div>                 
               <div className={styles.btnEditar}><Link to={`/lancados/edit/${post.id}`}>Editar</Link></div>
               <div className={styles.btnExcluir} onClick={() => deleteDocument(post.id)}>Excluir</div>
               </div>
-            )}                                                                           
+                                                                                       
               </div>      
         ))}
         {posts && posts.length > 0 ? (                                   
-              <p>Total - R$                                                         
-                  <span id="valTotal">{posts.map((post) => Math.round(parseFloat(post.valor))).reduce((total, valor) => total + valor)}</span>                                   
+              <p>Total - R$&nbsp;
+                {user.uid === "wjuppa1J53bsHiZIhlbAqrCuic03" && (  
+                  <span id="valTotal">{posts.map((post) => Math.round(parseFloat(post.valor/2))).reduce((total, valor) => total + valor)}</span>    
+                  )} {user.uid !== "wjuppa1J53bsHiZIhlbAqrCuic03" && ( 
+                      <span id="valTotal">{posts.map((post) => Math.round(parseFloat(post.valor))).reduce((total, valor) => total + valor)}</span>           
+                  )}                                             
+                                          
                  </p>          
         ): (
           <div className={styles.post_header}>

@@ -24,7 +24,7 @@ const Lancados = () => {
       <h2>Eventos Lançados</h2>
       <p>Selecione o mes para visualizar seus lançamentos!</p>      
       <form onSubmit={handleSubmit} className={styles.search_form}>
-        <select className={styles.select} value="Selecione" onChange={e => setMesLancamento(parseInt(e.target.value))}>
+        <select className={styles.select} value={mesLancamento} onChange={e => setMesLancamento(parseInt(e.target.value))}>
           <option value={0}>Selecione</option>
           <option value={1}>Janeiro</option>
           <option value={2}>Fevereiro</option>

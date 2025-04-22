@@ -60,6 +60,7 @@
     justify-content: center;
     display: flex;
     margin-top: 5px;
+    cursor: pointer!important;
 }
 
 .btnEditar {
@@ -234,6 +235,7 @@
         background-color: maroon;
         text-align: center;
         display: flex;
+        cursor: pointer!important;
       }
 
       .post_row a {

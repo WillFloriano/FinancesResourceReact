@@ -27,8 +27,15 @@ export const useFetchDocuments = (docCollection, mesLancamento, uid) => {
                 //dashboard
                 if(mesLancamento)
                 {
-                    console.log("mes a ser consultado = " + mesLancamento)
-                    q = await query(collectionRef, where("mes", "==", mesLancamento), where("uid", "==", uid))                                       
+                    if(uid === 'wjuppa1J53bsHiZIhlbAqrCuic03')
+                    {
+                        q = await query(collectionRef, where("mes", "==", mesLancamento), where("comprador", "==", 'Mis'), where("comprador", "==", "Ambos"))  
+
+                    }
+                    else
+                    {
+                        q = await query(collectionRef, where("mes", "==", mesLancamento), where("comprador", "==", 'Mis'), where("comprador", "==", "Ambos"))  
+                    }                                                        
                 }                           
 
                 await onSnapshot(q, (querySnapshot) => {
