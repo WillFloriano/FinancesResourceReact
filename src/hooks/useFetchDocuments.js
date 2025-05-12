@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase/config"
-import { collection, query, onSnapshot, where } from "firebase/firestore";
+import { collection, query, onSnapshot, where, orderBy } from "firebase/firestore";
 
 export const useFetchDocuments = (docCollection, mesLancamento, uid) => {
 
@@ -23,32 +23,21 @@ export const useFetchDocuments = (docCollection, mesLancamento, uid) => {
 
                 let q
 
-                //busca
-                //dashboard
                 if(mesLancamento)
                 {
-                    if(uid === 'wjuppa1J53bsHiZIhlbAqrCuic03')
-                    {
-                        q = await query(collectionRef, where("mes", "==", mesLancamento), where("comprador", "==", 'Mis'), where("comprador", "==", "Ambos"))  
-
-                    }
-                    else
-                    {
-                        q = await query(collectionRef, where("mes", "==", mesLancamento), where("comprador", "==", 'Mis'), where("comprador", "==", "Ambos"))  
-                    }                                                        
-                }                           
-
-                await onSnapshot(q, (querySnapshot) => {
-                    setDocuments(
-                        querySnapshot.docs.map((doc) => ({
-                            id: doc.id,
-                            ...doc.data(),
-                        }))
-                    )
-                })
-
-                setLoading(false);
-
+                    
+                    q = await query(collectionRef, where("mes", "==", mesLancamento), orderBy("createAt", "desc")) 
+                }                                       
+                    await onSnapshot(q, (querySnapshot) => {
+                        setDocuments(
+                            querySnapshot.docs.map((doc) => ({
+                                id: doc.id,
+                                ...doc.data(),
+                            }))
+                        )
+                        setLoading(false);
+                    }) 
+                                   
             } catch (error) {
                 console.log(error);
                 setError(error.message);

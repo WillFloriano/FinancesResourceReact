@@ -22,7 +22,7 @@ const Lancamentos = () => {
     if(post) {
       setTitle(post.title)
       setValor(post.valor)
-      setMesLancamento(post.mesLancamento)
+      setMesLancamento(post.mes)
     }
 
   }, [post])

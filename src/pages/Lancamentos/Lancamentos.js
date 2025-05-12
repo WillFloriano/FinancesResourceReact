@@ -7,12 +7,13 @@ import React from 'react';
 
 const Lancamentos = () => {
 
-  const [title, setTitle] = useState("")
+  const [titleInicial, setTitle] = useState("")
   const [valor, setValor] = useState("")
   const [mesLancando, setMesLancando] = useState(null)
   const [parcela, setParcela] = useState("")
   const [categoria, setCategoria] = useState("")
   const [comprador, setComprador] = useState(null)
+  const [cartao, setCartao] = useState(null)
   const [formError, setFormError] = useState(null);
   const [aviso, setAviso] = useState(null)
 
@@ -24,26 +25,30 @@ const Lancamentos = () => {
     e.preventDefault();
     setFormError("")
 
-    if (!title || !valor || !mesLancando || !parcela || !categoria || !comprador) {
+    if (!titleInicial || !valor || !mesLancando || !parcela || !categoria || !comprador) {
       setFormError("Todos os campos são obrigatórios!")
     }
 
     if (formError) return;
 
-    var inserido = 0;
-    var mes = mesLancando
+    var inserido = 1;
+    var mes = mesLancando;
+    var title = "";
 
     if(parcela > 1)
       {
-          while(parcela > inserido)
+          while(parcela >= inserido)
           {                        
-            
+            title = titleInicial + " - parcela " + inserido + "/" + parcela;
+            console.log(title)
+
             insertDocument({
               title,
               valor,
               mes,
               categoria,
               comprador,
+              cartao,
               uid: user.uid,
               createBy: user.email,
             });  
@@ -54,11 +59,12 @@ const Lancamentos = () => {
           }
       }else{
         insertDocument({
-          title,
+          titleInicial,
           valor,
           mes,
           categoria,
           comprador,
+          cartao,
           uid: user.uid,
           createBy: user.email,
         });
@@ -70,6 +76,7 @@ const Lancamentos = () => {
       setParcela("")   
       setCategoria("") 
       setComprador("") 
+      setCartao("")
       setAviso("Cadastrado com sucesso!")
 
       const timer = setTimeout(() =>{
@@ -124,34 +131,44 @@ const Lancamentos = () => {
         <div className={styles.form}>
           <label>
         <span>Categoria</span>
-        <select value={categoria}  onChange={e => setCategoria(e.target.value)}>
+        <select value={categoria} className={styles.select}  onChange={e => setCategoria(e.target.value)}>
           <option value={0}>Selecione</option>
+          <option value={"Auto"}>Auto</option>
           <option value={"Casa"}>Casa</option>
+          <option value={"Educacao"}>Educação</option>
           <option value={"Fast Food"}>Fast Food</option>
           <option value={"Farmacia"}>Farmacia</option>
           <option value={"Gatos"}>Gatos</option>
-          <option value={"Gasolina"}>Gasolina</option>
           <option value={"Lazer"}>Lazer</option>
           <option value={"Mercado"}>Mercado</option>
-          <option value={"MarketPlace"}>MarketPlace</option>                              
-          {/* <option value={9}></option>
-          <option value={10}></option>
-          <option value={11}></option>
+          <option value={"MarketPlace"}>MarketPlace/Shopping</option>   
+          <option value={"Saude"}>Saúde</option>    
+          <option value={"Uber"}>Uber</option>                                               
+          {/*<option value={11}></option>
           <option value={12}></option> */}
         </select>        
       </label>  
       <label>
       <span>Comprador</span>
-      <select value={comprador} onChange={e => setComprador(e.target.value)}>
+      <select value={comprador} className={styles.select} onChange={e => setComprador(e.target.value)}>
           <option value={0}>Selecione</option>
           <option value={"Ambos"}>Ambos</option>
           <option value={"Will"}>Will</option>
           <option value={"Mis"}>Mis</option>
         </select>        
       </label>  
+      <label>
+      <span>Cartao</span>
+      <select value={cartao} className={styles.select} onChange={e => setCartao(e.target.value)}>
+          <option value={0}>Selecione</option>
+          <option value={"Santander"}>Santander</option>
+          <option value={"Itau"}>Itau</option>
+          <option value={"Nubank"}>Nubank</option>
+        </select>        
+      </label>  
         <label>
         <span>Descrição:</span>
-        <input type="text" name="title" required placeholder="Descreva a compra" onChange={(e) => setTitle(e.target.value)} value={title} />
+        <input type="text" name="title" required placeholder="Descreva a compra" onChange={(e) => setTitle(e.target.value)} value={titleInicial} />
         </label>        
         <label>
         <span>Valor</span>

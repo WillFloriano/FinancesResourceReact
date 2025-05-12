@@ -11,7 +11,7 @@ const Lancados = () => {
 
   const {user} = useAuthValue();
   const uid = user.uid
-  const [mesLancamento, setMesLancamento] = useState(null)
+  const [mesLancamento, setMesLancamento] = useState("")
   const {id} = useParams();
  
   const handleSubmit = (e) => {
