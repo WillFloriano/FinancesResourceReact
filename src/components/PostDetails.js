@@ -40,7 +40,7 @@ const PostDetail = ({ mes, uid }) => {
         <div className={styles.post_header}>
           <span>Descrição</span>
           <span>Valor</span>
-          <span>Categoria</span>
+          <span>Cartão</span>
           <span>Ações</span>
         </div>
       )}
@@ -52,7 +52,7 @@ const PostDetail = ({ mes, uid }) => {
               <ul>
                 <li>{post.title}</li>
                 <li>R$ {post.valor}</li>
-                <li>{post.categoria}</li>
+                <li>{post.cartao}</li>
               </ul>
 
               <div>
@@ -79,7 +79,7 @@ const PostDetail = ({ mes, uid }) => {
               <ul>
                 <li>{post.title}</li>
                 <li>R$ {post.valor}</li>
-                <li>{post.categoria}</li>
+                <li>{post.cartao}</li>
               </ul>
 
               <div>
