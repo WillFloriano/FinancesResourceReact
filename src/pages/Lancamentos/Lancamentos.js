@@ -108,7 +108,7 @@ const Lancamentos = () => {
           <option value={7}>Julho</option>
           <option value={8}>Agosto</option>
           <option value={9}>Setembro</option>
-          <option value={10}>Outbro</option>
+          <option value={10}>Outubro</option>
           <option value={11}>Novembro</option>
           <option value={12}>Dezembro</option>
         </select>
@@ -126,7 +126,7 @@ const Lancamentos = () => {
                 <option value={"Auto"}>Auto</option>
                 <option value={"Casa"}>Casa</option>
                 <option value={"Educacao"}>Educação</option>
-                <option value={"Fast Food"}>Fast Food</option>
+                <option value={"Fast Food"}>Alimentação</option>
                 <option value={"Farmacia"}>Farmacia</option>
                 <option value={"Gatos"}>Gatos</option>
                 <option value={"Lazer"}>Lazer</option>
