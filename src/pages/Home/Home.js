@@ -68,14 +68,6 @@ const Home = () => {
           <h4>Itau</h4>
           {itau.length === 0 ? <p>Sem lançamentos</p> : (
             <>
-              {itau.map(post => (
-                <div key={post.id} className={styles.post_row}>
-                  <ul>
-                    <li><strong>{post.title}</strong></li>
-                    <li>{formatarMoeda(parseFloat(post.valor))}</li>
-                  </ul>
-                </div>
-              ))}
               <p><strong>Total:</strong> {formatarMoeda(calcularTotal(itau))}</p>
             </>
           )}
@@ -86,14 +78,6 @@ const Home = () => {
           <h4>Nubank</h4>
           {nubank.length === 0 ? <p>Sem lançamentos</p> : (
             <>
-              {nubank.map(post => (
-                <div key={post.id} className={styles.post_row}>
-                  <ul>
-                    <li><strong>{post.title}</strong></li>
-                    <li>{formatarMoeda(parseFloat(post.valor))}</li>
-                  </ul>
-                </div>
-              ))}
               <p><strong>Total:</strong> {formatarMoeda(calcularTotal(nubank))}</p>
             </>
           )}
@@ -104,14 +88,6 @@ const Home = () => {
           <h4>Santander</h4>
           {santander.length === 0 ? <p>Sem lançamentos</p> : (
             <>
-              {santander.map(post => (
-                <div key={post.id} className={styles.post_row}>
-                  <ul>
-                    <li><strong>{post.title}</strong></li>
-                    <li>{formatarMoeda(parseFloat(post.valor))}</li>
-                  </ul>
-                </div>
-              ))}
               <p><strong>Total:</strong> {formatarMoeda(calcularTotal(santander))}</p>
             </>
           )}
@@ -120,7 +96,6 @@ const Home = () => {
         {/* Totais gerais */}
         <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
           <h4>Totais</h4>
-          <p><strong>Total Geral:</strong> {formatarMoeda(totalGeral)}</p>
           <h5>Por Categoria:</h5>
           <ul>
             {Object.entries(totaisPorCategoria).map(([categoria, total]) => (
@@ -129,11 +104,68 @@ const Home = () => {
               </li>
             ))}
           </ul>
+          <p><strong>Total Geral:</strong> {formatarMoeda(totalGeral)}</p>
         </div>
       </div>
 
       <hr />
-      <h3>Editar Valor Selecionado</h3>
+      <div>
+        <h3>Contas Fixas:</h3>
+
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+          {/* Casa */}
+          <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+            <h4>Casa</h4>
+            <ul>
+              <li>Luz: R$ 200,00</li>
+              <li>Internet: R$ 70,00</li>
+              <li>Compras: R$ 150,00</li>
+              <li>Celulares: R$ 80,00</li>
+              <li>Convenio: R$ 630,00</li>
+              <li>Inss Mãe: R$ 20,00</li>
+              <li>Seguro Moto: R$ 177,95</li>
+              <li>Mei: R$ 80,90</li>
+              <li>Gatos: R$ 250,00</li>
+              <li>Gasolina: R$ 200,00</li>
+              <li>Cabelo: R$ 40,00</li>
+            </ul>
+            <p><strong>Total:</strong> R$ 1.948,85</p>
+          </div>
+
+          {/* Streaming */}
+          <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+            <h4>Streaming</h4>
+            <ul>
+              <li>Netflix: R$ 20,90</li>
+              <li>Spotfy: R$ 30,00</li>
+              <li>HBO Max: R$ 31,80</li>
+              <li>Apple: R$ 4,90</li>
+            </ul>
+            <p><strong>Total:</strong> R$ 87,60</p>
+          </div>
+
+          {/* Apartamento */}
+          <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+            <h4>Apartamento</h4>
+            <ul>
+              <li>Evolução: R$ 566,50</li>
+              <li>Entrada: R$ 800,00</li>
+            </ul>
+            <p><strong>Total:</strong> R$ 1.366,50</p>
+          </div>
+
+          {/* Totais gerais */}
+          <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+            <h4>Totais</h4>
+            <p><strong>Total Geral:</strong> R$ 3.402,95</p>
+            <p><strong>Total Sem Evolução:</strong> R$ 2.602,95</p>
+            <p><strong>Salário:</strong> R$ 6.500,00</p>
+            <p><strong>Deveria Sobrar:</strong> R$ 3.097,05</p>
+            <p><strong>Reserva Emergencia 6 meses:</strong> R$ 15.617,70</p>
+            <p><strong>Investir:</strong> R$ 500,00</p>
+          </div>
+        </div>
+      </div>
       {/* Formulário de edição (se desejado) */}
     </div>
   );
