@@ -62,42 +62,32 @@ const Home = () => {
   return (
     <div style={{ padding: '20px' }}>
       <h2>Cartões de Crédito</h2>
-      <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-        {/* Itau */}
-        <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+      <div className={styles.cardContainer}>
+        <div className={styles.card}>
           <h4>Itau</h4>
           {itau.length === 0 ? <p>Sem lançamentos</p> : (
-            <>
-              <p><strong>Total:</strong> {formatarMoeda(calcularTotal(itau))}</p>
-            </>
+            <p><strong>Total:</strong> {formatarMoeda(calcularTotal(itau))}</p>
           )}
         </div>
 
-        {/* Nubank */}
-        <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+        <div className={styles.card}>
           <h4>Nubank</h4>
           {nubank.length === 0 ? <p>Sem lançamentos</p> : (
-            <>
-              <p><strong>Total:</strong> {formatarMoeda(calcularTotal(nubank))}</p>
-            </>
+            <p><strong>Total:</strong> {formatarMoeda(calcularTotal(nubank))}</p>
           )}
         </div>
 
-        {/* Santander */}
-        <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+        <div className={styles.card}>
           <h4>Santander</h4>
           {santander.length === 0 ? <p>Sem lançamentos</p> : (
-            <>
-              <p><strong>Total:</strong> {formatarMoeda(calcularTotal(santander))}</p>
-            </>
+            <p><strong>Total:</strong> {formatarMoeda(calcularTotal(santander))}</p>
           )}
         </div>
 
-        {/* Totais gerais */}
-        <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+        <div className={styles.card}>
           <h4>Totais</h4>
           <h5>Por Categoria:</h5>
-          <ul>
+          <ul className={styles.ulLista}>
             {Object.entries(totaisPorCategoria).map(([categoria, total]) => (
               <li key={categoria}>
                 {categoria}: {formatarMoeda(total)}
@@ -109,14 +99,13 @@ const Home = () => {
       </div>
 
       <hr />
+
       <div>
         <h3>Contas Fixas:</h3>
-
-        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-          {/* Casa */}
-          <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+        <div className={styles.cardContainer}>
+          <div className={styles.card}>
             <h4>Casa</h4>
-            <ul>
+            <ul className={styles.ulLista}>
               <li>Luz: R$ 200,00</li>
               <li>Internet: R$ 70,00</li>
               <li>Compras: R$ 150,00</li>
@@ -132,10 +121,9 @@ const Home = () => {
             <p><strong>Total:</strong> R$ 1.948,85</p>
           </div>
 
-          {/* Streaming */}
-          <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+          <div className={styles.card}>
             <h4>Streaming</h4>
-            <ul>
+            <ul className={styles.ulLista}>
               <li>Netflix: R$ 20,90</li>
               <li>Spotfy: R$ 30,00</li>
               <li>HBO Max: R$ 31,80</li>
@@ -144,18 +132,16 @@ const Home = () => {
             <p><strong>Total:</strong> R$ 87,60</p>
           </div>
 
-          {/* Apartamento */}
-          <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+          <div className={styles.card}>
             <h4>Apartamento</h4>
-            <ul>
+            <ul className={styles.ulLista}>
               <li>Evolução: R$ 566,50</li>
               <li>Entrada: R$ 800,00</li>
             </ul>
             <p><strong>Total:</strong> R$ 1.366,50</p>
           </div>
 
-          {/* Totais gerais */}
-          <div style={{ border: '1px solid #ccc', padding: '10px', flex: 1 }}>
+          <div className={styles.card}>
             <h4>Totais</h4>
             <p><strong>Total Geral:</strong> R$ 3.402,95</p>
             <p><strong>Total Sem Evolução:</strong> R$ 2.602,95</p>
@@ -166,7 +152,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* Formulário de edição (se desejado) */}
     </div>
   );
 };
