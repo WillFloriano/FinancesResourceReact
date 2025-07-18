@@ -7,6 +7,14 @@ const PostDetail = ({ mes, uid }) => {
   const { documents: posts, loading } = useFetchDocuments("lancamentos", mes, uid);
   const { deleteDocument } = useDeleteDocument("lancamentos");
 
+  // Função para ajustar o valor conforme o comprador
+  const getValorAjustado = (post) => {
+    const comprador = (post.comprador || "").trim().toLowerCase();
+    const valor = parseFloat(post.valor);
+    if (isNaN(valor)) return 0;
+    return comprador === "ambos" ? Math.round(valor / 2) : Math.round(valor);
+  };
+
   // Filtrando os posts que têm comprador "Ambos" ou "Mis"
   const postsFiltrados = posts?.filter(post => {
     const comprador = (post.comprador || "").trim().toLowerCase();
@@ -14,9 +22,8 @@ const PostDetail = ({ mes, uid }) => {
     return (comprador === "ambos" || comprador === "mis") && !isNaN(valorNumerico);
   });
 
-  const totalFiltrado = postsFiltrados?.map(post =>
-    Math.round(parseFloat(post.valor) / 2)
-  ).reduce((total, valor) => total + valor, 0) || 0;
+  const totalFiltrado = postsFiltrados?.map(getValorAjustado)
+    .reduce((total, valor) => total + valor, 0) || 0;
 
   const postsNaoFiltrados = posts?.filter(post => {
     const comprador = (post.comprador || "").trim().toLowerCase();
@@ -51,7 +58,7 @@ const PostDetail = ({ mes, uid }) => {
             <div className={styles.post_row} key={post.id}>
               <ul>
                 <li>{post.title}</li>
-                <li>R$ {post.valor}</li>
+                <li>R$ {getValorAjustado(post).toFixed(2)}</li>
                 <li>{post.cartao}</li>
               </ul>
 
@@ -68,7 +75,7 @@ const PostDetail = ({ mes, uid }) => {
 
           {postsFiltrados && postsFiltrados.length > 0 && (
             <p>
-              <span id="valTotal">Total: R$ {totalFiltrado}</span>
+              <span id="valTotal">Total: R$ {totalFiltrado.toFixed(2)}</span>
             </p>
           )}
         </>
@@ -78,7 +85,7 @@ const PostDetail = ({ mes, uid }) => {
             <div className={styles.post_row} key={post.id}>
               <ul>
                 <li>{post.title}</li>
-                <li>R$ {post.valor}</li>
+                <li>R$ {Math.round(parseFloat(post.valor)).toFixed(2)}</li>
                 <li>{post.cartao}</li>
               </ul>
 
@@ -95,7 +102,7 @@ const PostDetail = ({ mes, uid }) => {
 
           {postsNaoFiltrados && postsNaoFiltrados.length > 0 && (
             <p>
-              <span id="valTotal">Total: R$ {totalNaoFiltrado}</span>
+              <span id="valTotal">Total: R$ {totalNaoFiltrado.toFixed(2)}</span>
             </p>
           )}
         </>

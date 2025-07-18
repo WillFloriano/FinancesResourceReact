@@ -2,12 +2,18 @@ import styles from './Home.module.css';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 import logo from '../../images/LogoNovo.png';
 import { useAuthValue } from '../../context/AuthContext';
+import { useState } from 'react';
 import React from 'react';
 
 const Home = () => {
   const { user } = useAuthValue();
 
-  const mesAtual = new Date().getMonth() + 1;
+  const handleSubmit = (e) => {
+    e.preventDefault() 
+  
+  }
+
+  const [mesAtual, setMesAtual] = useState("");
   const { documents: posts } = useFetchDocuments("lancamentos", mesAtual, user.uid);
 
   const nubank = posts?.filter(post => {
@@ -61,6 +67,23 @@ const Home = () => {
 
   return (
     <div style={{ padding: '20px' }}>
+      <form onSubmit={handleSubmit} className={styles.search_form}>
+        <select className={styles.select} value={mesAtual} onChange={e => setMesAtual(parseInt(e.target.value))}>
+          <option value={0}>Selecione</option>
+          <option value={1}>Janeiro</option>
+          <option value={2}>Fevereiro</option>
+          <option value={3}>Março</option>
+          <option value={4}>Abril</option>
+          <option value={5}>Maio</option>
+          <option value={6}>Junho</option>
+          <option value={7}>Julho</option>
+          <option value={8}>Agosto</option>
+          <option value={9}>Setembro</option>
+          <option value={10}>Outubro</option>
+          <option value={11}>Novembro</option>
+          <option value={12}>Dezembro</option>
+        </select>
+      </form>
       <h2>Cartões de Crédito</h2>
       <div className={styles.cardContainer}>
         <div className={styles.card}>
