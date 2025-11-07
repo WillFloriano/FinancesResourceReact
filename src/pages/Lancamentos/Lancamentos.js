@@ -154,6 +154,7 @@ const Lancamentos = () => {
                 <option value={"Santander"}>Santander</option>
                 <option value={"Itau"}>Itau</option>
                 <option value={"Nubank"}>Nubank</option>
+                <option value={"MP"}>Mercado Pago</option>
               </select>
             </label> 
             <label>

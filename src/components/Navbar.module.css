@@ -12,15 +12,12 @@
 /* 1. Container Principal da Navbar */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Espaçamento entre marca e links/menu */
-    align-items: center;
-    
-    /* Posição Fixa no Topo */
+    justify-content: space-between;
+    align-items: center;    
     position: sticky; 
     top: 0; 
     left: 0;
-    width: 96%;
-    
+    width: 96%;    
     background-color: var(--secondary-color); /* Fundo escuro */
     padding: 15px 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Sombra proeminente */
@@ -31,25 +28,15 @@
 .brand {
     font-size: 1.4em;
     font-weight: 700;
-    color: var(--text-color);
+    color: #e20606;
     text-decoration: none;
-    display: flex;
-    align-items: center;
     gap: 5px;
     background-color: var(--secondary-color);
+    width: fit-content;
 }
 
-/* Destaque do Nome da Marca */
-.brand span {
-    font-weight: 400;
-    color: var(--primary-color); /* Cor primária de destaque */
-}
-
-/* Estilo da Imagem do Logo */
-.brand img {
-  width: 30%;    
-    margin-left: 2px;
-    vertical-align: middle;
+.brand a{
+    width: fit-content;
 }
 
 /* 3. Lista de Links (ul.links_list) */
@@ -88,9 +75,8 @@
 }
 
 /* 6. Integração com o Menu (Logado) */
-/* O componente <Menu> já tem seu próprio estilo, este LI precisa apenas de alinhamento */
 .links_list li:has(> .Menu) {
-    margin: 0; /* Remove margem extra para que o Menu gerencie seu próprio espaçamento */
+    margin: 0; 
 }
 
 
@@ -98,36 +84,25 @@
 
 @media (max-width: 768px) {
     .navbar {
-        /* Permite que os itens empilhem em telas pequenas se necessário */
         flex-direction: column;
         align-items: flex-start;
         padding: 10px 15px;
     }
 
     .brand {
-        margin-bottom: 10px;
-        font-size: 1.2em;
+       display: none;
     }
     
-    /* Oculta os links Login/Cadastrar (para forçar o uso do menu hamburger se logado) */
-    /* Se você quiser mantê-los visíveis, remova ou ajuste este bloco */
     .links_list {
-        display: none; 
-    }
-    
-    /* Se o usuário estiver logado, o <Menu> (que contém o menu hamburger) deve ser visível */
-    .links_list li:has(> .Menu) {
         display: block; 
     }
     
-    /* Se você usar o menu hamburger no <Menu>, ele vai gerenciar a responsividade */
-}
+    .links_list li:has(> .Menu) {
+        display: block; 
+    }    
 
-/* Ajuste específico para o componente <Menu> */
-@media (max-width: 768px) {
-    /* Garante que o Menu (que é o último LI) ocupe toda a largura se necessário */
     .links_list {
-        width: 100%;
+        width: 76%;
     }
     .links_list li {
         margin-left: 0;

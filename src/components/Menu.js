@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../hooks/userAuthentication";
 import { useAuthValue } from "../context/AuthContext";
-import styles from "./Menu.module.css"; // Importando o CSS
+import styles from "./Menu.module.css";
 
 const Menu = () => {
   const { user } = useAuthValue();
@@ -10,136 +10,99 @@ const Menu = () => {
 
   const [isLançamentosSubmenuVisible, setIsLançamentosSubmenuVisible] = useState(false);
   const [isInvestimentosSubmenuVisible, setIsInvestimentosSubmenuVisible] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLançamentosMouseEnter = () => setIsLançamentosSubmenuVisible(true);
-  const handleLançamentosMouseLeave = () => setIsLançamentosSubmenuVisible(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-  const handleInvestimentosMouseEnter = () => setIsInvestimentosSubmenuVisible(true);
-  const handleInvestimentosMouseLeave = () => setIsInvestimentosSubmenuVisible(false);
+  const toggleLançamentos = () => setIsLançamentosSubmenuVisible(!isLançamentosSubmenuVisible);
+  const toggleInvestimentos = () => setIsInvestimentosSubmenuVisible(!isInvestimentosSubmenuVisible);
+
+  if (!user) return null;
+
+  const isMasterUser = user.uid === "wjuppa1J53bsHiZIhlbAqrCuic03";
+  const menuClass = isMasterUser ? styles.menuM : styles.menu;
+  const itemClass = isMasterUser ? styles.menuItemM : styles.menuItem;
+  const submenuClass = styles.submenu;
+
+  // Detectar se é mobile (para alternar entre hover e click)
+  const isMobile = window.innerWidth <= 768;
 
   return (
-    <nav>
-      {user.uid === "wjuppa1J53bsHiZIhlbAqrCuic03" && (
-        <>
-        <span>{user.email}</span>
-          <ul className={styles.menuM}>
-            <li
-              className={styles.menuItemM}
-              onMouseEnter={handleLançamentosMouseEnter}
-              onMouseLeave={handleLançamentosMouseLeave}
-            >
-              <span>Lançamentos</span>
-              {isLançamentosSubmenuVisible && (
-                <ul className={styles.submenuM}>
-                  <li>
-                    <NavLink to="/lancamentos" className={({ isActive }) => (isActive ? styles.active : "")}>
-                      Novo Lançamento
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/lancados" className={({ isActive }) => (isActive ? styles.active : "")}>
-                      Eventos Lançados
-                    </NavLink>
-                  </li>
-                </ul>
-              )}
-            </li>
+    <nav className={styles.menu_nav}>
+      <button
+        className={`${styles.hamburger} ${isMenuOpen ? styles.open : ''}`}
+        onClick={toggleMenu}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-            <li
-              className={styles.liOculta}
-              onMouseEnter={handleInvestimentosMouseEnter}
-              onMouseLeave={handleInvestimentosMouseLeave}
-            >
-              <span>Investimentos</span>
-              {isInvestimentosSubmenuVisible && (
-                <ul className={styles.liOculta}>
-                  <li>
-                    <NavLink to="/lancinvestimentos" className={({ isActive }) => (isActive ? styles.active : "")}>
-                      Novo Investimento
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/investimentos" className={({ isActive }) => (isActive ? styles.active : "")}>
-                    Investimentos
-                    </NavLink>
-                  </li>
-                </ul>
-              )}
-            </li>
+      <span className={styles.user_email}>{user.email}</span>
 
-            <span>
-              <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : "")}>
-                Home
-              </NavLink>
-            </span>
+      <ul className={`${menuClass} ${isMenuOpen ? styles.menu_open : ''}`}>
 
-            <span>
-              <button onClick={logout}>Sair</button>
-            </span>
-          </ul>
-        </>
-      )}
+        {/* Lançamentos */}
+        <li
+          className={itemClass}
+          onMouseEnter={!isMobile ? () => setIsLançamentosSubmenuVisible(true) : undefined}
+          onMouseLeave={!isMobile ? () => setIsLançamentosSubmenuVisible(false) : undefined}
+          onClick={isMobile ? toggleLançamentos : undefined}
+        >
+          <span>Lançamentos ▾</span>
+          {isLançamentosSubmenuVisible && (
+            <ul className={`${submenuClass} ${isLançamentosSubmenuVisible ? styles.show : ""}`}>
+              <li>
+                <NavLink to="/lancamentos" className={({ isActive }) => (isActive ? styles.active : "")}>
+                  Novo Lançamento
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/lancados" className={({ isActive }) => (isActive ? styles.active : "")}>
+                  Eventos Lançados
+                </NavLink>
+              </li>
+            </ul>
+          )}
+        </li>
 
-      {user.uid !== "wjuppa1J53bsHiZIhlbAqrCuic03" && (
-        <>
-        <span>{user.email}</span>
-          <ul className={styles.menu}>
-            <li
-              className={styles.menuItem}
-              onMouseEnter={handleLançamentosMouseEnter}
-              onMouseLeave={handleLançamentosMouseLeave}
-            >
-              <span>Lançamentos</span>
-              {isLançamentosSubmenuVisible && (
-                <ul className={styles.submenu}>
-                  <li>
-                    <NavLink to="/lancamentos" className={({ isActive }) => (isActive ? styles.active : "")}>
-                      Novo Lançamento
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/lancados" className={({ isActive }) => (isActive ? styles.active : "")}>
-                      Eventos Lançados
-                    </NavLink>
-                  </li>
-                </ul>
-              )}
-            </li>
+        {/* Investimentos */}
+        <li
+          className={isMasterUser ? styles.liOculta : itemClass}
+          onMouseEnter={!isMobile ? () => setIsInvestimentosSubmenuVisible(true) : undefined}
+          onMouseLeave={!isMobile ? () => setIsInvestimentosSubmenuVisible(false) : undefined}
+          onClick={isMobile ? toggleInvestimentos : undefined}
+        >
+          <span>Investimentos ▾</span>
+          {isInvestimentosSubmenuVisible && (
+            <ul className={`${submenuClass} ${isInvestimentosSubmenuVisible ? styles.show : ""}`}>
+              <li>
+                <NavLink to="/lancinvestimentos" className={({ isActive }) => (isActive ? styles.active : "")}>
+                  Novo Investimento
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/investimentos" className={({ isActive }) => (isActive ? styles.active : "")}>
+                  Investimentos
+                </NavLink>
+              </li>
+            </ul>
+          )}
+        </li>
 
-            <li
-              className={styles.menuItem}
-              onMouseEnter={handleInvestimentosMouseEnter}
-              onMouseLeave={handleInvestimentosMouseLeave}
-            >
-              <span>Investimentos</span>
-              {isInvestimentosSubmenuVisible && (
-                <ul className={styles.submenu}>
-                  <li>
-                    <NavLink to="/lancinvestimentos" className={({ isActive }) => (isActive ? styles.active : "")}>
-                      Novo Investimento
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/investimentos" className={({ isActive }) => (isActive ? styles.active : "")}>
-                    Investimentos
-                    </NavLink>
-                  </li>
-                </ul>
-              )}
-            </li>
+        {/* Links fixos */}
+        <span className={styles.nav_link_span}>
+          <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : "")}>
+            Home
+          </NavLink>
+        </span>
 
-            <span>
-              <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : "")}>
-                Home
-              </NavLink>
-            </span>
-
-            <span>
-              <button onClick={logout}>Sair</button>
-            </span>
-          </ul>
-        </>
-      )}
+        <span className={styles.nav_link_span}>
+          <button onClick={logout}>Sair</button>
+        </span>
+      </ul>
     </nav>
   );
 };

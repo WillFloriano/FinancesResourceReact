@@ -1,36 +1,26 @@
-/* Navbar.module.css */
+/* Menu.module.css */
 
-/* VARIÁVEIS DE CORES */
 :root {
-    --primary-color: #007bff; /* Azul */
-    --secondary-color: #343a40; /* Cinza escuro (fundo principal) */
-    --text-color: #f8f9fa; /* Branco/Claro */
-    --hover-color: #0056b3; /* Azul mais escuro */
-    --active-bg: #e9ecef; /* Fundo ativo */
-    --active-text: #007bff; /* Texto ativo */
+    --primary-color: #007bff;
+    --secondary-color: #343a40;
+    --text-color: #f8f9fa;
+    --hover-color: #0056b3;
+    --active-bg: #e9ecef;
+    --active-text: #007bff;
 }
 
-/* 1. Container Principal (NAV) */
-nav {
+.menu_nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    padding: 15px 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    min-height: 60px; /* Altura mínima para melhor visualização */
 }
 
-/* Estilo do E-mail (Display user.email) */
-nav > span {
+.user_email {
     font-size: 0.9em;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.7); /* Cor mais sutil */
+    color: rgba(255, 255, 255, 0.7);
     margin-right: 20px;
 }
 
-/* 2. Menu Principal (ul.menu e ul.menuM) */
 .menu, .menuM {
     list-style: none;
     padding: 0;
@@ -39,15 +29,13 @@ nav > span {
     align-items: center;
 }
 
-/* Itens de Menu Simples (Home e Sair) */
 .menu > span, .menuM > span {
     margin-left: 20px;
     display: flex;
     align-items: center;
 }
 
-/* 3. Link e Botão Sair (Estilo Consistente) */
-nav a, nav button {
+.menu_nav a, .menu_nav button {
     color: var(--text-color);
     text-decoration: none;
     padding: 8px 15px;
@@ -57,36 +45,34 @@ nav a, nav button {
     font-size: 0.95em;
     cursor: pointer;
     border: none;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: transparent;
 }
 
-nav a:hover {
+.menu_nav a:hover {
     background-color: var(--primary-color);
 }
 
-nav button {
-    background-color: #dc3545; /* Cor de Perigo/Sair */
+.menu_nav button {
+    background-color: #dc3545;
 }
 
-nav button:hover {
+.menu_nav button:hover {
     background-color: #c82333;
 }
 
-/* 4. Estado Ativo do NavLink */
 .active {
     background-color: var(--active-bg) !important;
     color: var(--active-text) !important;
     font-weight: 700 !important;
 }
 
-/* 5. Itens com Submenu (Lançamentos, Investimentos) */
 .menuItem, .menuItemM, .liOculta {
-    position: relative; /* Base para o submenu flutuante */
+    position: relative;
     padding: 8px 15px;
     margin: 0 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--active-bg);
 }
 
 .menuItem:hover, .menuItemM:hover, .liOculta:hover {
@@ -94,10 +80,9 @@ nav button:hover {
     border-radius: 4px;
 }
 
-/* 6. Submenu (ul.submenu e ul.submenuM) */
-.submenu, .submenuM, .liOculta > ul {
+.submenu {
     position: absolute;
-    top: 100%; /* Abaixo do item pai */
+    top: 100%;
     left: 0;
     list-style: none;
     padding: 10px 0;
@@ -106,55 +91,132 @@ nav button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 0 0 4px 4px;
     min-width: 180px;
-    z-index: 20; /* Garante que fique acima de tudo */
+    z-index: 20;    
 }
 
-.submenu li, .submenuM li, .liOculta > ul li {
+.submenu li {
     padding: 0;
 }
 
-.submenu li a, .submenuM li a, .liOculta > ul li a {
-    color: rgba(255, 255, 255, 0.7);
+.submenu li a {
+    color: var(--active-bg);
     padding: 8px 15px;
-    display: block; /* Ocupa toda a largura do submenu */
+    display: block;
     font-weight: 400;
 }
 
-.submenu li a:hover, .submenuM li a:hover, .liOculta > ul li a:hover {
+.submenu li a:hover {
     background-color: var(--primary-color);
     border-radius: 0;
 }
 
-/* --- RESPONSIVIDADE (Menu Hamburger) --- */
-/* Oculta o menu principal e mostra o botão do menu em telas pequenas */
-.menu, .menuM {
-    display: none; /* Oculta o menu padrão por padrão em mobile */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 50;
 }
 
-/* Estilo para um botão Hamburger (Você precisaria de um estado e um botão no React para isso) */
-/* Se você quiser implementar um menu hamburger, avise-me. 
-   Por agora, vou garantir que o menu apareça em desktop e desapareça em mobile. */
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+}
 
-@media (min-width: 769px) {
-    /* Exibe o menu principal em desktop */
+.hamburger.open span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+@media (max-width: 615px) {
+    .hamburger {
+        display: block;
+        order: 2;
+        margin-left: 20px;
+    }
+
+    .user_email {
+        display: none;
+    }
+
     .menu, .menuM {
-        display: flex;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Em mobile, você pode querer empilhar ou simplificar a barra de navegação */
-    nav {
+        display: none;
         flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 15px;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background-color: var(--secondary-color);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        padding: 10px 0;
+        z-index: 10;
     }
 
-    /* Oculta o email do usuário em telas menores para economizar espaço */
-    nav > span {
-        display: none; 
+    .menu_open {
+        display: flex !important;
     }
-    
-    /* Nota: Se você não implementar um botão hamburger no código React, 
-       os usuários não verão o menu em telas pequenas! */
+
+    .menu_nav {
+        width: auto;
+    }
+
+    .menu > span, .menuM > span,
+    .menuItem, .menuItemM, .liOculta {
+        width: 100%;
+        text-align: left;
+        padding: 0;
+        margin: 0;
+    }
+
+    .menu_nav a, .menu_nav button {
+        display: block;
+        width: 90rem;
+        padding: 10px 20px;
+        border-radius: 0;
+        text-align: left;
+    }
+
+    /* Submenu no mobile: padrão fechado */
+    .submenu {
+        display: none;
+        position: static;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        box-shadow: none;
+        padding: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+    }
+
+    /* Quando submenu estiver visível */
+    .submenu.show {
+        display: block;
+        max-height: 500px;
+        opacity: 1;
+    }
+
+    .submenu li a {
+        padding-left: 40px;
+    }
+
+    .menu_nav span {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
 }

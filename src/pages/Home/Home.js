@@ -34,6 +34,12 @@ const Home = () => {
     return cartao === "santander" && !isNaN(valorNumerico);
   }) || [];
 
+    const MP = posts?.filter(post => {
+    const cartao = (post.cartao || "").trim().toLowerCase();
+    const valorNumerico = parseFloat(post.valor);
+    return cartao === "MP" && !isNaN(valorNumerico);
+  }) || [];
+
   const calcularTotal = (lista) => {
     return lista.reduce((acc, post) => acc + parseFloat(post.valor || 0), 0);
   };
@@ -87,23 +93,30 @@ const Home = () => {
       <h2>Cartões de Crédito</h2>
       <div className={styles.cardContainer}>
         <div className={styles.card}>
-          <h4>Itau</h4>
+          <h4 className={styles.cardItau}>Itau</h4>
           {itau.length === 0 ? <p>Sem lançamentos</p> : (
             <p><strong>Total:</strong> {formatarMoeda(calcularTotal(itau))}</p>
           )}
         </div>
 
         <div className={styles.card}>
-          <h4>Nubank</h4>
+          <h4 className={styles.cardNubank}>Nubank</h4>
           {nubank.length === 0 ? <p>Sem lançamentos</p> : (
             <p><strong>Total:</strong> {formatarMoeda(calcularTotal(nubank))}</p>
           )}
         </div>
 
         <div className={styles.card}>
-          <h4>Santander</h4>
+          <h4 className={styles.cardSantander}>Santander</h4>
           {santander.length === 0 ? <p>Sem lançamentos</p> : (
             <p><strong>Total:</strong> {formatarMoeda(calcularTotal(santander))}</p>
+          )}
+        </div>
+
+        <div className={styles.card}>
+          <h4 className={styles.cardMP}>Mercado Pago</h4>
+          {MP.length === 0 ? <p>Sem lançamentos</p> : (
+            <p><strong>Total:</strong> {formatarMoeda(calcularTotal(MP))}</p>
           )}
         </div>
 
