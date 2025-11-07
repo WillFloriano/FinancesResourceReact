@@ -39,74 +39,91 @@ const PostDetail = ({ mes, uid }) => {
     <div className={styles.post_detail}>
       {loading && <p>Carregando ...</p>}
 
-      {posts && posts.length === 0 ? (
-        <div className={styles.post_header}>
-          <span>Nenhum Evento encontrado!</span>
-        </div>
-      ) : (
-        <div className={styles.post_header}>
-          <span>Descrição</span>
-          <span>Valor</span>
-          <span>Cartão</span>
-          <span>Ações</span>
-        </div>
-      )}
+      {/* NOVO CONTAINER DE SCROLL HORIZONTAL (Aplicação do CSS de Scroll) */}
+      <div className={styles.scroll_container}>
+        
+        {posts && posts.length === 0 ? (
+          <div className={styles.post_header}>
+            <span>Nenhum Evento encontrado!</span>
+          </div>
+        ) : (
+          <div className={styles.post_header}>
+            <span>Descrição</span>
+            <span>Valor</span>
+            <span>Cartão</span>
+            <span>Ações</span>
+          </div>
+        )}
 
+        {uid === "wjuppa1J53bsHiZIhlbAqrCuic03" ? (
+          <>
+            {postsFiltrados && postsFiltrados.map(post => (
+              <div className={styles.post_row} key={post.id}>
+                <ul>
+                  <li>{post.title}</li>
+                  <li>R$ {getValorAjustado(post).toFixed(2)}</li>
+                  <li>{post.cartao}</li>
+                </ul>
+
+                <div>
+                  <div className={styles.btnEditar}>
+                    <Link to={`/lancados/edit/${post.id}`}>Editar</Link>
+                  </div>
+                  <div className={styles.btnExcluir} onClick={() => deleteDocument(post.id)}>
+                    Excluir
+                  </div>
+                </div>
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            {postsNaoFiltrados &&
+            [...postsNaoFiltrados]
+              .sort((a, b) => a.cartao.localeCompare(b.cartao))
+              .map(post => (
+                <div className={styles.post_row} key={post.id}>
+                  <ul>
+                    <li>{post.title}</li>
+                    <li>R$ {Math.round(parseFloat(post.valor)).toFixed(2)}</li>
+                    <li>{post.cartao}</li>
+                  </ul>
+
+                  <div>
+                    <div className={styles.btnEditar}>
+                      <Link to={`/lancados/edit/${post.id}`}>Editar</Link>
+                    </div>
+                    <div className={styles.btnExcluir} onClick={() => deleteDocument(post.id)}>
+                      Excluir
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </>
+        )}
+      </div> 
+      {/* FIM DO CONTAINER DE SCROLL */}
+
+      {/* Retornamos o bloco de Total para dentro da sua condição original para segurança */}
       {uid === "wjuppa1J53bsHiZIhlbAqrCuic03" ? (
         <>
-          {postsFiltrados && postsFiltrados.map(post => (
-            <div className={styles.post_row} key={post.id}>
-              <ul>
-                <li>{post.title}</li>
-                <li>R$ {getValorAjustado(post).toFixed(2)}</li>
-                <li>{post.cartao}</li>
-              </ul>
-
-              <div>
-                <div className={styles.btnEditar}>
-                  <Link to={`/lancados/edit/${post.id}`}>Editar</Link>
-                </div>
-                <div className={styles.btnExcluir} onClick={() => deleteDocument(post.id)}>
-                  Excluir
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {postsFiltrados && postsFiltrados.length > 0 && (
-            <p>
-              <span id="valTotal">Total: R$ {totalFiltrado.toFixed(2)}</span>
-            </p>
-          )}
+            {postsFiltrados && postsFiltrados.length > 0 && (
+                <p>
+                    <span id="valTotal">Total: R$ {totalFiltrado.toFixed(2)}</span>
+                </p>
+            )}
         </>
       ) : (
         <>
-          {postsNaoFiltrados && postsNaoFiltrados.map(post => (
-            <div className={styles.post_row} key={post.id}>
-              <ul>
-                <li>{post.title}</li>
-                <li>R$ {Math.round(parseFloat(post.valor)).toFixed(2)}</li>
-                <li>{post.cartao}</li>
-              </ul>
-
-              <div>
-                <div className={styles.btnEditar}>
-                  <Link to={`/lancados/edit/${post.id}`}>Editar</Link>
-                </div>
-                <div className={styles.btnExcluir} onClick={() => deleteDocument(post.id)}>
-                  Excluir
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {postsNaoFiltrados && postsNaoFiltrados.length > 0 && (
-            <p>
-              <span id="valTotal">Total: R$ {totalNaoFiltrado.toFixed(2)}</span>
-            </p>
-          )}
+            {postsNaoFiltrados && postsNaoFiltrados.length > 0 && (
+                <p>
+                    <span id="valTotal">Total: R$ {totalNaoFiltrado.toFixed(2)}</span>
+                </p>
+            )}
         </>
       )}
+
     </div>
   );
 };

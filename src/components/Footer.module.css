@@ -1,18 +1,43 @@
-.rodape {
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    width: 100%;
-    height: 115px;
+/* Footer.module.css - Ajustado */
+
+/* O elemento footer agora é o último item do Flexbox global */
+footer {
+    /* Não precisa mais de position: fixed, ele será fixado pelo Flexbox */
+    width: 100%; 
+    background-color: #343a40; 
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+    font-size: 0.9em;
+    z-index: 1000; 
+    /* Adicione uma margem top, se necessário, para separá-lo do último conteúdo */
+    margin-top: auto; /* Pode ser necessário em alguns layouts Flexbox */
 }
 
-.rodape p{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: darkgrey;
-    font-family: "Montserrat", sans-serif;
-    height: 90px;
-    margin-top: 35px;
+/* Container interno (rodape) - Mantido */
+.rodape {
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+/* Estilização do Parágrafo - Mantido */
+.rodape p {
+    margin: 0;
+    line-height: 1; 
+    font-weight: 400;
+    font-size: 20px;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    footer {
+        padding: 12px 0;
+        font-size: 0.8em;
+    }
+
+    .rodape {
+        padding: 0 10px;
+    }
 }

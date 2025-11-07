@@ -44,8 +44,8 @@ const Login = () => {
             <span>Senha:</span>
             <input type="password" name="password" required placeholder='Insira sua senha' value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>              
-        {!loading && <button className='btn'>Entrar</button>}
-        {loading && <button className='btn' disabled>Aguarde...</button>}
+        {!loading && <button className={styles.btn}>Entrar</button>}
+        {loading && <button className={styles.btn} disabled>Aguarde...</button>}
         {error && <p className="error">{error}</p>}
        </form>
     </div>

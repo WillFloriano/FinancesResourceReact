@@ -1,48 +1,181 @@
-.create_post{
+:root {
+    --primary-color: #007bff; /* Azul */
+    --success-color: #28a745; /* Verde para sucesso */
+    --error-color: #dc3545; /* Vermelho para erro */
+    --text-color: #343a40; /* Texto escuro */
+    --border-color: #ced4da; /* Borda cinza clara */
+    --bg-light: #f8f9fa; /* Fundo leve */
+}
+
+/* 1. Container Principal */
+.create_post {
+    width: 80vw; /* Limita a largura do formulário para melhor leitura */
+    margin: 1em auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
+/* 2. Títulos e Descrições */
 .create_post h2 {
-    font-size: 2.2em;
+    font-size: 2em;
+    color: var(--text-color);
+    margin-bottom: 10px;
 }
 
 .create_post p {
-    color: black;
-    margin-bottom: 2em;
+    color: #6c757d;
+    margin-bottom: 25px;
 }
 
-.create_post ::placeholder {
-    color: black;
+/* 3. Estilo dos Selects (Dropdowns) */
+/* Aplicado ao select de Meses e dentro do formulário */
+.select {
+    padding: 10px 15px;
+    margin-bottom: 15px; /* Espaçamento entre selects/campos */
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    color: var(--text-color);
+    background-color: var(--bg-light);
+    appearance: none; 
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23343a40'%3e%3cpath d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    width: auto;
+    box-sizing: border-box;
 }
 
-.select{
-    width: 200px;
-    margin-bottom: 2em;
-    border-radius: 10px;
-
+.select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
 }
 
-.form{
+/* 4. Layout do Formulário (Após a seleção do Mês) */
+.form {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 54%;
-    margin-left: 154px;
+    flex-wrap: wrap; /* Permite que os campos quebrem para a próxima linha */
+    justify-content: space-between;
+    gap: 20px; /* Espaçamento entre as colunas/linhas de campos */
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
 }
 
+/* 5. Estilo das Labels e Spans */
+.form label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 10px;
+    flex-basis: calc(50% - 10px); /* 50% da largura, menos metade do gap */
+}
 
-@media (max-width: 926px) {          
-    .form{
-        justify-content: center;
-        flex-direction: column;
-        width: 60%;
-        margin-left: 10px!important;
-        display: flex !important;
-        padding: 10px;
+/* Faz alguns campos ocuparem a largura total se necessário */
+.form label:nth-child(4) { /* Descrição (ou o quarto label) */
+    flex-basis: 100%;
+}
+
+.form label span {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+/* 6. Estilo dos Inputs e Textarea */
+.form input[type="text"],
+.form input[type="number"],
+.form textarea {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    background-color: var(--bg-light);
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Espaçamento entre inputs dentro da mesma label */
+    width: max-content;
+}
+
+.form input:focus, .form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* 7. Mensagens de Aviso/Erro/Sucesso */
+.aviso {
+    color: var(--success-color);
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.error, .create_post .error {
+    color: var(--error-color);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+    margin: 15px 0;
+}
+
+/* Mensagem Inicial (Nenhum Post) */
+.noposts {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff3cd; /* Amarelo/Aviso */
+    border: 1px solid #ffeeba;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.noposts p {
+    color: #856404;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* 8. Botão Cadastrar */
+.btnCadastrar {
+    background-color: var(--text-color);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-top: 0px;
+    width: fit-content;
+    margin: 0;
+    top: 0;
+    margin-left: 36vw;
+}
+
+.btnCadastrar:hover {
+    background-color: #6c757d;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 600px) {
+    .create_post {
+        margin: 20px 10px;
+        padding: 20px 15px;
     }
 
-    .create_post p {
-        color: black;
-        margin-bottom: 3em;
+    /* Faz todos os campos ocuparem 100% da largura em telas muito pequenas */
+    .form label {
+        flex-basis: 100%;
     }
 }

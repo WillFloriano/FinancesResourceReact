@@ -1,167 +1,135 @@
-.navbar{
+/* Navbar.module.css */
+
+/* VARIÁVEIS DE CORES */
+:root {
+    --primary-color: #007bff; 
+    --secondary-color: #343a40; 
+    --text-color: #f8f9fa; 
+    --active-text: #007bff;
+    --active-bg: #e9ecef;
+}
+
+/* 1. Container Principal da Navbar */
+.navbar {
     display: flex;
-    box-shadow: rgba(0, 0, 0, .15) 0px -2px 10px 0px;
-    justify-content: space-between;
+    justify-content: space-between; /* Espaçamento entre marca e links/menu */
     align-items: center;
-    padding: .5em 2em;
-    background-color: darkgray;
+    
+    /* Posição Fixa no Topo */
+    position: sticky; 
+    top: 0; 
+    left: 0;
+    width: 96%;
+    
+    background-color: var(--secondary-color); /* Fundo escuro */
+    padding: 15px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Sombra proeminente */
+    z-index: 50; /* Garante que fique acima do conteúdo */
 }
 
-.brand{
-    font-size: 1.2em;
+/* 2. Estilo da Marca/Logo */
+.brand {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--secondary-color);
 }
 
-.brand span{
-    font-weight: 900;
-    text-transform: uppercase;
+/* Destaque do Nome da Marca */
+.brand span {
+    font-weight: 400;
+    color: var(--primary-color); /* Cor primária de destaque */
 }
 
-.links_list{
+/* Estilo da Imagem do Logo */
+.brand img {
+  width: 30%;    
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
+/* 3. Lista de Links (ul.links_list) */
+.links_list {
     display: flex;
     list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
 }
 
 .links_list li {
-    margin-right: 1em;
+    margin-left: 20px;
 }
 
-.links_list li a {
-    padding: .4em .6em;
+/* 4. Estilo dos NavLinks (Login/Cadastrar - Deslogado) */
+.links_list a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95em;
 }
 
-.active{
+.links_list a:hover {
+    background-color: var(--primary-color);
+}
 
-    color: #fff;
-  }
+/* 5. Estado Ativo */
+.active {
+    background-color: var(--active-bg) !important;
+    color: var(--active-text) !important;
+    font-weight: 700 !important;
+}
 
-/* Menu Principal */
-.menu {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  /* Itens do Menu */
-  .menuItem {
-    display: inline-block;
-    position: relative;
-    margin: 0 10px;
-  }
-  
-  .menuItem span,
-  .menuItem button {
-    text-decoration: none;
-    color: black;
-    padding: 10px 15px;
-    display: block;
-    cursor: pointer;   
-  }
-  
-  /* Submenu */
-  .submenu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    min-width: 200px;
-  }
-  
-  /* Submenu Itens */
-  .submenu li {
-    text-decoration: none;
-    color: black;
-    padding: 10px;
-    display: block;
-  }
-  
-  /* Ativar estilo quando o link estiver ativo */
-  .active {
-    font-weight: bold;
-    color: #0056b3;
-  }
-  
-  
-  .liOculta{
-    display: none !important;
-  }
-
-  .menuM {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  /* Itens do Menu */
-  .menuItemM {
-    display: inline-block;
-    position: relative;
-    margin: 0 10px;
-  }
-  
-  .menuItemM span,
-  .menuItemM button {
-    text-decoration: none;
-    color: black;
-    padding: 10px 15px;
-    display: block;
-    cursor: pointer;   
-  }
-  
-  /* Submenu */
-  .submenuM {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    min-width: 200px;
-  }
-  
-  /* Submenu Itens */
-  .submenuM li {
-    text-decoration: none;
-    color: black;
-    padding: 10px;
-  }
+/* 6. Integração com o Menu (Logado) */
+/* O componente <Menu> já tem seu próprio estilo, este LI precisa apenas de alinhamento */
+.links_list li:has(> .Menu) {
+    margin: 0; /* Remove margem extra para que o Menu gerencie seu próprio espaçamento */
+}
 
 
-  @media (max-width: 926px){
-    .brand img{
-        max-width: 20%;
+/* --- Responsividade --- */
+
+@media (max-width: 768px) {
+    .navbar {
+        /* Permite que os itens empilhem em telas pequenas se necessário */
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
     }
 
     .brand {
-        font-size: 12px;
-        display: none;
+        margin-bottom: 10px;
+        font-size: 1.2em;
     }
-
-    .links_list{
-        width: 100%;        
-        display: flex;
-        height: 20px;
-        justify-content: space-between;
-        
+    
+    /* Oculta os links Login/Cadastrar (para forçar o uso do menu hamburger se logado) */
+    /* Se você quiser mantê-los visíveis, remova ou ajuste este bloco */
+    .links_list {
+        display: none; 
     }
-
-    .links_list li a {
-        padding: 0;
-        padding-inline: 5px;
-        justify-content: center;
+    
+    /* Se o usuário estiver logado, o <Menu> (que contém o menu hamburger) deve ser visível */
+    .links_list li:has(> .Menu) {
+        display: block; 
     }
-  }
-
-/* Responsividade para telas pequenas */
-@media (max-width: 768px) {
-
-nav {
-  height: 50px!important;
+    
+    /* Se você usar o menu hamburger no <Menu>, ele vai gerenciar a responsividade */
 }
 
+/* Ajuste específico para o componente <Menu> */
+@media (max-width: 768px) {
+    /* Garante que o Menu (que é o último LI) ocupe toda a largura se necessário */
+    .links_list {
+        width: 100%;
+    }
+    .links_list li {
+        margin-left: 0;
+    }
 }

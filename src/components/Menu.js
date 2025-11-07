@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../hooks/userAuthentication";
 import { useAuthValue } from "../context/AuthContext";
-import styles from "./Navbar.module.css"; // Importando o CSS
+import styles from "./Menu.module.css"; // Importando o CSS
 
 const Menu = () => {
   const { user } = useAuthValue();

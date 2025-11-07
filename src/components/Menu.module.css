@@ -1,0 +1,160 @@
+/* Navbar.module.css */
+
+/* VARIÁVEIS DE CORES */
+:root {
+    --primary-color: #007bff; /* Azul */
+    --secondary-color: #343a40; /* Cinza escuro (fundo principal) */
+    --text-color: #f8f9fa; /* Branco/Claro */
+    --hover-color: #0056b3; /* Azul mais escuro */
+    --active-bg: #e9ecef; /* Fundo ativo */
+    --active-text: #007bff; /* Texto ativo */
+}
+
+/* 1. Container Principal (NAV) */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 15px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-height: 60px; /* Altura mínima para melhor visualização */
+}
+
+/* Estilo do E-mail (Display user.email) */
+nav > span {
+    font-size: 0.9em;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7); /* Cor mais sutil */
+    margin-right: 20px;
+}
+
+/* 2. Menu Principal (ul.menu e ul.menuM) */
+.menu, .menuM {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Itens de Menu Simples (Home e Sair) */
+.menu > span, .menuM > span {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* 3. Link e Botão Sair (Estilo Consistente) */
+nav a, nav button {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95em;
+    cursor: pointer;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+nav a:hover {
+    background-color: var(--primary-color);
+}
+
+nav button {
+    background-color: #dc3545; /* Cor de Perigo/Sair */
+}
+
+nav button:hover {
+    background-color: #c82333;
+}
+
+/* 4. Estado Ativo do NavLink */
+.active {
+    background-color: var(--active-bg) !important;
+    color: var(--active-text) !important;
+    font-weight: 700 !important;
+}
+
+/* 5. Itens com Submenu (Lançamentos, Investimentos) */
+.menuItem, .menuItemM, .liOculta {
+    position: relative; /* Base para o submenu flutuante */
+    padding: 8px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.menuItem:hover, .menuItemM:hover, .liOculta:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* 6. Submenu (ul.submenu e ul.submenuM) */
+.submenu, .submenuM, .liOculta > ul {
+    position: absolute;
+    top: 100%; /* Abaixo do item pai */
+    left: 0;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 0 0 4px 4px;
+    min-width: 180px;
+    z-index: 20; /* Garante que fique acima de tudo */
+}
+
+.submenu li, .submenuM li, .liOculta > ul li {
+    padding: 0;
+}
+
+.submenu li a, .submenuM li a, .liOculta > ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 8px 15px;
+    display: block; /* Ocupa toda a largura do submenu */
+    font-weight: 400;
+}
+
+.submenu li a:hover, .submenuM li a:hover, .liOculta > ul li a:hover {
+    background-color: var(--primary-color);
+    border-radius: 0;
+}
+
+/* --- RESPONSIVIDADE (Menu Hamburger) --- */
+/* Oculta o menu principal e mostra o botão do menu em telas pequenas */
+.menu, .menuM {
+    display: none; /* Oculta o menu padrão por padrão em mobile */
+}
+
+/* Estilo para um botão Hamburger (Você precisaria de um estado e um botão no React para isso) */
+/* Se você quiser implementar um menu hamburger, avise-me. 
+   Por agora, vou garantir que o menu apareça em desktop e desapareça em mobile. */
+
+@media (min-width: 769px) {
+    /* Exibe o menu principal em desktop */
+    .menu, .menuM {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Em mobile, você pode querer empilhar ou simplificar a barra de navegação */
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
+    }
+
+    /* Oculta o email do usuário em telas menores para economizar espaço */
+    nav > span {
+        display: none; 
+    }
+    
+    /* Nota: Se você não implementar um botão hamburger no código React, 
+       os usuários não verão o menu em telas pequenas! */
+}

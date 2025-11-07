@@ -1,11 +1,122 @@
+/* Login.module.css */
+
+/* VARIÁVEIS DE CORES (Consistentes com os outros módulos) */
+:root {
+    --primary-color: #007bff; /* Azul */
+    --error-color: #dc3545; /* Vermelho para erro */
+    --text-color: #343a40; /* Texto escuro */
+    --border-color: #ced4da; /* Borda cinza clara */
+}
+
+/* 1. Container Principal (Div de Login) */
 .login {
+    max-width: 450px; /* Limita a largura para um formulário de login conciso */
+    margin: 80px auto; /* Centraliza vertical e horizontalmente com mais espaço */
+    padding: 40px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
     text-align: center;
 }
 
-.login p{
-    color: black;
+/* 2. Títulos e Descrições */
+.login h1 {
+    font-size: 2.2em;
+    color: var(--text-color);
+    margin-bottom: 5px;
 }
 
-.login ::placeholder {
-    color: black;
+.login p {
+    color: #6c757d;
+    margin-bottom: 30px;
+    font-size: 1.05em;
+}
+
+/* 3. Estilo do Formulário */
+.login form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre os campos */
+    text-align: left;
+}
+
+/* 4. Labels */
+.login label {
+    display: flex;
+    flex-direction: column;
+}
+
+.login label span {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+/* 5. Inputs (Email e Senha) */
+.login input[type="email"],
+.login input[type="password"] {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    background-color: #f8f9fa; /* Fundo leve para o campo */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.15);
+    outline: none;
+}
+
+/* 6. Botão "Entrar" (Estilo da classe global 'btn') */
+.btn {
+    background-color: var(--text-color);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn:hover:not(:disabled) {
+    background-color: #0056b3; /* Cor mais escura no hover */
+}
+
+/* 7. Estado de Loading/Desabilitado */
+.btn:disabled {
+    background-color: #6c757d; /* Cinza para estado de carregamento */
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* 8. Mensagem de Erro (Classe global .error) */
+.error {
+    color: var(--error-color);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* --- Responsividade --- */
+
+@media (max-width: 500px) {
+    .login {
+        max-width: 90%;
+        margin: 40px auto;
+        padding: 30px 20px;
+    }
+
+    .login h1 {
+        font-size: 2em;
+    }
 }

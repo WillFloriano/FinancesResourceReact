@@ -1,248 +1,201 @@
+/* PostDetail.module.css */
+
+/* 1. Container Principal (Largura total do dispositivo) */
 .post_detail {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* Define 100% da largura do viewport (dispositivo) */
+    width: 96vw; 
+    max-width: none; 
+    
+    margin: 30px auto; /* Centraliza, mas como é 100vw, a margem horizontal não fará diferença */
+    padding: 20px;
+    background-color: #f8f9fa; 
+    box-sizing: border-box; /* Inclui padding e border na largura/altura total */
 }
 
-.post_detail h2 {
-    font-size: 2.2em;
-    margin-bottom: .5em;
+/* 2. CONTAINER DE SCROLL (Área da Lista) */
+.scroll_container {
+    /* SCROLL VERTICAL: Limita a altura e permite a rolagem */
+    max-height: 550px; /* Altura máxima da lista. Ajuste conforme necessário! */
+    overflow-y: auto; /* Adiciona scroll vertical quando a altura máxima é atingida */
+    
+    /* SCROLL HORIZONTAL: Desativado, pois a largura é 100% (se precisar ative: overflow-x: auto;) */
+    overflow-x: hidden; 
+
+    width: 99%; 
+    border: 1px solid #ced4da; /* Borda sutil para delimitar a área de rolagem */
+    border-radius: 8px;
+    background-color: white; /* Fundo branco para a lista */
 }
 
-.post_detail li {
-    color: #AAA;
-    margin-bottom: 1em;
-}
-
-
-.post_row{
-    display: flex;
-    justify-content: space-around;
-    width: 880px;
-    padding: 10px;
-    align-items: center;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-    border-top: 1px solid black ;
-    border-left: 1px solid black;
-    margin-top: 10px;
-}
-
+/* 3. Cabeçalho da Lista (Fixo no topo do Scroll Container) */
 .post_header {
-    font-weight: bold;
-    border-bottom: 2px solid #CCC;
     display: flex;
-    width: 765px;
     justify-content: space-between;
-}
+    align-items: center;
+    padding: 15px 20px;
+    
+    /* CHAVE para FIXAR: Fica no topo da área de scroll */
+    position: sticky; 
+    top: 0; 
+    z-index: 10; /* Garante que fique acima das linhas */
 
-.post_row ul{
-  display: flex;
-  list-style: none;
-  width: 75%;
-}
-
-.post_row li {
-    color:  #000;
-    border-right: 1px solid black;
-    width: 240px;
-}
-
-.btnExcluir {
-    height: 20px;
-    width: 100px;
-    font-size:  0.9em;
-    background-color: maroon;
-    border-radius: 5px;
+    background-color: #343a40; /* Cinza escuro */
     color: white;
-    justify-content: center;
+    font-weight: bold;
+    font-size: 1em;
+    text-transform: uppercase;
+    
+    /* Largura mínima para garantir que as colunas caibam */
+    min-width: 98%; 
+}
+
+/* Ajustes de Colunas do Cabeçalho */
+.post_header span {
+    flex: 1;
+    text-align: left;
+}
+/* Coluna Ações: Largura fixa */
+.post_header span:nth-child(4) {
+    flex: 0 0 180px; 
+    text-align: center;
+}
+
+
+/* 4. Linhas de Dados (Zebra, Hover e Visualização) */
+.post_row {
     display: flex;
-    margin-top: 5px;
-    cursor: pointer!important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    
+    background-color: white;
+    border-bottom: 1px solid #dee2e6; /* Linha divisória */
+    border-left: 5px solid transparent; 
+    transition: all 0.2s ease;    
+    min-width: 98%; /* Garante que as linhas preencham a largura */
+}
+
+/* Efeito Zebra para melhor legibilidade */
+.post_row:nth-child(even) {
+    background-color: #f1f3f5;
+}
+
+.post_row:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #007bff; /* Destaque no hover */
+}
+
+.post_row ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    font-size: 0.95em;
+    color: #495057;
+}
+
+.post_row ul li {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 15px;
+}
+
+/* Destacando o Valor */
+.post_row ul li:nth-child(2) {
+    font-weight: bold;
+    color: #28a745; /* Cor verde para destaque */
+}
+
+/* Coluna de Ações */
+.post_row > div {
+    display: flex;
+    gap: 15px;
+    flex: 0 0 180px; 
+    justify-content: center;
+}
+
+/* 5. Botões e Ações */
+.btnEditar, .btnExcluir {
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease;
+    flex-grow: 1;
 }
 
 .btnEditar {
-    height: 20px;
-    width: 100px;
-    font-size:  0.9em;
-    background-color: gray;
-    border-radius: 5px;
-    color: #000;
-    justify-content: center;
-    display: flex;
-    margin-top: 5px;
+    background-color: #28a745;
+}
+.btnEditar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+.btnExcluir {
+    background-color: #dc3545;
+    color: white;
+}
+.btnExcluir:hover {
+    background-color: #c82333;
 }
 
-.post_sub_header{
-    display: flex;
-    border-bottom: 1px solid;
-    border-bottom-color: grey;
-    padding: 10px;
-    justify-content: space-around;
-    width: 880px;  
-}
 
-@media (max-width: 926px) {
-    .post_detail {
-     width: 95%;
-    }
-
-    .post_header {
-        width: 100%;
-        display: inline-flex;
-        justify-content: space-around;
-        display: none;
-    }
-            
-    .post_row{
-        display: flex;
-        justify-content: space-around;
-        width: 88%;
-        flex-direction: row;
-        align-items: center;
-        border-bottom: 1px solid black;
-        border-right: 1px solid black;
-        border-top: 1px solid black ;
-        border-left: 1px solid black;
-        margin-left: 16px;
-    }
-
-    .post_row ul{
-        display: block;
-    }
-    
-    .post_row li {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-    }
-
-    
-    .post_row a {
-        width: 40%;
-        font-size:  0.8em;
-        background-color: #000;
-        margin-left: 20px;
-    }    
-}
-
-/* Estilo base */
-.post_detail {
-    padding: 20px;
-    font-size: 14px;
-  }
-  
-  .post_header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .post_header span {
-    font-weight: bold;
-  }
-  
-  .post_row {
-    margin-bottom: 10px;
-  }
-  
-  /* ul {
-    display: flex;
-    justify-content: space-between;
-    padding: 0;
-    list-style-type: none;
-  }
-  
-  ul li {
-    width: 24%;
-    text-align: center;
-  }
-  
-  ul li:nth-child(4) {
-    width: auto;
+/* 6. Totalizador (Fixo fora do scroll) */
+.post_detail p {
+    margin-top: 0; 
+    padding: 15px 20px;
+    border-top: 2px solid #007bff; /* Linha de destaque */
     text-align: right;
-  } */
-  
-  .btn {
-    margin-right: 10px;
-  }
-  
-  /* Responsividade para telas pequenas */
-  @media (max-width: 768px) {
-
-    ul {
-      display: flex;
-      padding: 0;
-      margin: 0;
-      margin-bottom: 15px;
-      justify-content: center;
-    }
-  
-    ul li {
-      width: 100%;
-      text-align: right;
-      margin-bottom: 5px;
-    }     
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #e9ecef;
+    border-radius: 0 0 8px 8px; /* Cantos arredondados na base */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar o total */
 }
-  
-  /* Ajustes para telas menores (como smartphones) */
-  @media (max-width: 480px) {
-    ul {
-        display: flex;
-        padding: 0;
+
+#valTotal {
+    color: #007bff; 
+}
+
+
+/* --- 7. Responsividade (Telas Pequenas) --- */
+@media (max-width: 768px) {
+    .post_detail {
+        padding: 10px 0; 
         margin: 0;
-        margin-bottom: 25px;
-        justify-content: center;
-      }
-
-      ul li {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 5px;
-      }  
+    }
     
-    .post_row ul {
-        display: flex;
-        padding: 0;
-        margin: 0;
-        justify-content: center;
-      }
+    /* Reduz a altura máxima da lista em dispositivos móveis */
+    .scroll_container {
+        max-height: 40vh; /* Usa 40% da altura da tela para ser visualizado */
+        border-radius: 0; /* Remove bordas para ocupar a largura total do dispositivo */
+    }
+
+    /* Reduz o padding para ganhar mais espaço nas colunas */
+    .post_header, .post_row {
+        padding: 10px 10px;
+    }
     
-      .post_row ul li {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 5px;
-        display: flex;
-      }  
-
-      .post_row{
-        display: flex;
-        width: 100%;
-        margin: 0   ;
-      }
-
-      .btnEditar {
-        border-radius: 5px;
-        background-color: gray;
-        text-align: center;
-        display: flex;
-      }
-
-      .btnExcluir {
-        border-radius: 5px;
-        background-color: maroon;
-        text-align: center;
-        display: flex;
-        cursor: pointer!important;
-      }
-
-      .post_row a {
-        text-decoration: none;
-        background-color: transparent;
-        color: #000;
-        font-size: 12px;
-      }
-  }
-  
+    /* Ajusta a fonte para ser mais compacta no mobile */
+    .post_header, .post_row ul {
+        font-size: 0.9em;
+    }
+    
+    /* Reduz a largura da coluna de ações no mobile */
+    .post_header span:nth-child(4), .post_row > div {
+        flex: 0 0 130px; 
+    }
+    
+    /* Ajusta o tamanho dos botões */
+    .btnEditar, .btnExcluir {
+        padding: 5px 8px;
+        font-size: 0.75em;
+    }
+}

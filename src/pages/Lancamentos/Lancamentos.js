@@ -118,7 +118,7 @@ const Lancamentos = () => {
             <p>Não foram encontrados posts</p>
           </div>)}
         {mesLancando && (
-          <div className={styles.form}>
+          <div className={styles.form}>            
             <label>
               <span>Categoria</span>
               <select value={categoria} className={styles.select} onChange={e => setCategoria(e.target.value)}>
@@ -155,20 +155,21 @@ const Lancamentos = () => {
                 <option value={"Itau"}>Itau</option>
                 <option value={"Nubank"}>Nubank</option>
               </select>
-            </label>
+            </label> 
             <label>
-              <span>Descrição:</span>
-              <input type="text" name="title" required placeholder="Descreva a compra" onChange={(e) => setTitle(e.target.value)} value={titleInicial} />
+              <span>Descrição</span>
+              <input type="text" name="title" required placeholder="Descreva a compra" onChange={(e) => setTitle(e.target.value)} value={titleInicial} />              
             </label>
             <label>
               <span>Valor</span>
-              <textarea name="valor" required placeholder="preencher com ponto" onChange={(e) => setValor(e.target.value)} value={valor} />
-              <span>Parcela</span>
-              <input type='number' name="parcela" required onChange={(e) => setParcela(e.target.value)} value={parcela} />
+              <input type="text"  name="valor" required placeholder="Preencher com ponto" onChange={(e) => setValor(e.target.value)} value={valor} />               
             </label>
+            <label>
+              <span>Parcela</span>
+              <input type='number' name="parcela" required onChange={(e) => setParcela(e.target.value)} value={parcela} />  
+            </label>                       
             {aviso && <p className="aviso">{aviso}</p>}
-            <button className='btn Lanc'>Cadastrar</button>
-
+            <button className={styles.btnCadastrar}>Cadastrar</button>
             {response.error && <p className="error">{response.error}</p>}
             {formError && <p className="error">{formError}</p>}
           </div>

@@ -17,7 +17,7 @@ const Navbar = () => {
     return (
         <nav className={styles.navbar}>
             <NavLink to="/" className={styles.brand}>
-                Finances <span>Resource <img src={logo} alt="WMZR TECNOLOGY"/></span>
+                <img src={logo} alt="WMZR TECNOLOGY"/>
             </NavLink>
             <ul className={styles.links_list}>                
                 {!user && (

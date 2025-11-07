@@ -1,35 +1,106 @@
-.lancado{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.search_form {
-    max-width: 100%;
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2em;
-}
-
-.search_form input {
-    margin-right:  10px;
-    width: 50%;
-}
-
-.noposts {
+/* 1. Container Principal */
+.lancado {
+    /* Centraliza o conteúdo, mas permite a largura total em telas menores */
+     /*max-width: 1000px; */
+    margin: 50px auto;
+    padding: 20px;
     text-align: center;
+    color: #343a40; /* Cor do texto principal */
 }
 
-.noposts p{
-    margin-bottom:  1.5em;
+/* 2. Títulos e Descrições */
+.lancado h2 {
+    font-size: 2.2em;
+    color: black; /* Cor primária de destaque */
+    margin-bottom: 5px;
+    font-weight: 700;
 }
 
-.noposts a {
-    padding: 10px 25px;
+.lancado p {
+    color: black;
+    margin-bottom: 25px;
+    font-size: 1.1em;
 }
 
-.select{
-    width: 200px;
+/* 3. Formulário de Busca (Dropdown) */
+.search_form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.select {
+    padding: 10px 20px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #495057;
+    background-color: white;
+    appearance: none; /* Remove o estilo padrão do SO para melhor controle visual */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23343a40'%3e%3cpath d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    min-width: 200px; /* Garante que o select tenha um tamanho decente */
+    max-width: 90%;
+}
+
+.select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* 4. Mensagem "Nenhum Post" */
+.noposts {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f1f3f5;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    display: inline-block; /* Ajusta o bloco ao conteúdo */
+}
+
+.noposts p {
+    font-weight: 500;
+    color: #dc3545; /* Cor vermelha para indicar vazio/erro */
+    margin: 0;
+    font-size: 1.1em;
+}
+
+/* 5. Estilizando o Container do PostDetail (Para alinhar com o pai) */
+/* O PostDetail já tem seus próprios estilos (100vw, etc.), este div pai só precisa de espaçamento */
+.lancado > div > div {
+    /* Este estilo se aplica ao div que contém o componente <PostDetail /> */
+    margin-top: 20px; 
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .lancado {
+        margin: 20px 10px;
+        padding: 10px;
+    }
+
+    .lancado h2 {
+        font-size: 1.8em;
+    }
+
+    .lancado p {
+        font-size: 1em;
+    }
+    
+    .select {
+        min-width: 80%;
+        padding: 8px 15px;
+        font-size: 0.95em;
+    }
+
+    .noposts {
+        margin-top: 30px;
+    }
 }
